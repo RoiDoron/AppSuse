@@ -3,44 +3,44 @@
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 
-const demoNotes =  [
+const demoNotes = [
     {
-    id: 'n101',
-    createdAt: 1112222,
-    type: 'NoteTxt',
-    isPinned: true,
-    style: {
-    backgroundColor: '#00d'
-    },
-    info: {
-    txt: 'Fullstack Me Baby!'
-    }
-    },
-    {
-    id: 'n102',
-    type: 'NoteImg',
-    isPinned: false,
-    info: {
-    url: 'http://books.google.com/books/content?id=nBuA0hmspdMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
-    title: 'Bobi and Me'
-    },
-    style: {
-    backgroundColor: '#00d'
-    }
+        id: 'n101',
+        createdAt: 1112222,
+        type: 'NoteTxt',
+        isPinned: true,
+        style: {
+            backgroundColor: '#00d'
+        },
+        info: {
+            txt: 'Fullstack Me Baby!'
+        }
     },
     {
-    id: 'n103',
-    type: 'NoteTodos',
-    isPinned: false,
-    info: {
-    title: 'Get my stuff together',
-    todos: [
-    { txt: 'Driving license', doneAt: null },
-    { txt: 'Coding power', doneAt: 187111111 }
-    ]
+        id: 'n102',
+        type: 'NoteImg',
+        isPinned: false,
+        info: {
+            url: 'http://books.google.com/books/content?id=nBuA0hmspdMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+            title: 'Bobi and Me'
+        },
+        style: {
+            backgroundColor: '#00d'
+        }
+    },
+    {
+        id: 'n103',
+        type: 'NoteTodos',
+        isPinned: false,
+        info: {
+            title: 'Get my stuff together',
+            todos: [
+                { txt: 'Driving license', doneAt: null },
+                { txt: 'Coding power', doneAt: 187111111 }
+            ]
+        }
     }
-    }
-    ]
+]
 
 const NOTE_KEY = 'noteDB'
 _createNotes()
@@ -54,11 +54,11 @@ export const noteService = {
     _createNote,
 }
 
-function query(){
+function query() {
     return storageService.query(NOTE_KEY)
-    .then(notes => {
-        return notes
-    }) 
+        .then(notes => {
+            return notes
+        })
 }
 
 function get(noteId) {
@@ -73,15 +73,16 @@ function save(note) {
     if (note.id) {
         return storageService.put(NOTE_KEY, note)
     } else {
+        note = _createNote(note.title, note.txt, note.url)
         return storageService.post(NOTE_KEY, note)
     }
 }
 
-function getEmptyNote(title = '', txt = '') {
-    return { id: '', title, txt}
+function getEmptyNote() {
+    return { id: '', title : '', txt:'' , url: ''}
 }
 
-function _createNotes(){
+function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
         notes = demoNotes
@@ -90,9 +91,21 @@ function _createNotes(){
     }
 }
 
-function _createNote(title, txt) {
-    const note = getEmptyNote(title, txt)
+function _createNote(title, txt, url) {
+    // const note = getEmptyNote()
+    const note = {}
     note.id = utilService.makeId()
+    note.createdAt = Date.now()
+    note.type = 'NoteTxt'
+    note.isPinned = false
+    note.style = {
+        backgroundColor: utilService.getRandomColor()
+    }
+    note.info = {
+        title: title,
+        txt: txt,
+        url: url,
+    }
     return note
 }
 
