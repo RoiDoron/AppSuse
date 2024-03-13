@@ -21,7 +21,7 @@ const demoNotes =  [
     type: 'NoteImg',
     isPinned: false,
     info: {
-    url: 'http://some-img/me',
+    url: 'http://books.google.com/books/content?id=nBuA0hmspdMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     title: 'Bobi and Me'
     },
     style: {
@@ -66,7 +66,7 @@ function get(noteId) {
 }
 
 function remove(noteId) {
-    return storageService.get(Note, noteId)
+    return storageService.remove(NOTE_KEY, noteId)
 }
 
 function save(note) {

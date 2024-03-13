@@ -21,3 +21,7 @@
 .grid {
     display: grid;
 }
+
+.clean-list{
+    list-style: none;
+}

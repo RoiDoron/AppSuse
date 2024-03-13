@@ -10,17 +10,28 @@ export function NoteIndex() {
         loadNotes()
     }, [])
 
-    function loadNotes(){
+    function loadNotes() {
         noteService.query()
-        .then((notes) => {
-            setNotes(notes)
-        })
+            .then((notes) => {
+                setNotes(notes)
+            })
+    }
+    function onRemoveNote(noteId) {
+        console.log(noteId)
+        noteService.remove(noteId)
+            .then(() => {
+                console.log('removed')
+                setNotes((prevNotes) => prevNotes.filter(note => note.id !== noteId))
+            })
+            .catch((err) => {
+                console.error('had issues removing note', err)
+            })
     }
 
     if (!notes) return <div>Loading...</div>
     return (
         <section className="note-index">
-            <NoteList notes={notes} />
+            <NoteList onRemoveNote={onRemoveNote} notes={notes} />
         </section>
 
     )
