@@ -28,10 +28,21 @@ export function NoteIndex() {
             })
     }
 
+    function onUpdateNote(noteToUpdate) {
+        noteService.save(noteToUpdate)
+            .then((savedNote) => {
+                console.log('updated')
+                setNotes(prevNotes => prevNotes.map(note => note.id === savedNote.id ? savedNote : note ))
+            })
+            .catch(err => {
+                console.error('had issues with updating note', err)
+            })
+    }
+
     if (!notes) return <div>Loading...</div>
     return (
         <section className="note-index">
-            <NoteList onRemoveNote={onRemoveNote} notes={notes} />
+            <NoteList onRemoveNote={onRemoveNote} onUpdateNote={onUpdateNote} notes={notes} />
         </section>
 
     )
