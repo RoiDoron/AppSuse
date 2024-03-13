@@ -3,13 +3,10 @@ import { MailRow } from "./MailRow.jsx";
 
 export function MailList({emails,onRemoveEmail}) {
 
-    return <table className="email-table">
-        <thead>
-            <tr>
-                <th>im am head</th>
-            </tr>
-        </thead>
-        <tbody>
+    return <section className="emails-section">
+        <div>
+            hi
+        </div>
             {
                 emails.map(mail=>
                 <MailRow mail={mail}
@@ -17,7 +14,5 @@ export function MailList({emails,onRemoveEmail}) {
                 key={mail.id}
                 />)
             }
-        </tbody>
-
-    </table>
+    </section>
 }

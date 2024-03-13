@@ -1,5 +1,13 @@
  /* mail index  */
  .email-table{
-    border: 1px solid black;
+    border: 1px solid var(--gray2);
     
+ }
+
+ .mail-row{
+    border: 1px solid var(--gray2);
+ }
+
+ .mail-row:hover{
+    background-color: var(--gray2);
  }
