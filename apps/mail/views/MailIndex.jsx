@@ -1,5 +1,6 @@
 import { EmailCompose } from "../cmps/EmailCompose.jsx"
 import { MailList } from "../cmps/MailList.jsx"
+import { MailSideNav } from "../cmps/MailSideNav.jsx"
 import { mailService } from "../services/mail.service.js"
 
 const { useState, useEffect } = React
@@ -59,12 +60,13 @@ export function MailIndex() {
     if (!emails) return <div>loading...</div>
     console.log(emails);
     return <section className="emails-index flex  ">
-        <div className="nav-bar">
-            <button onClick={() => onSendMail()}>send email</button>
-            <button onClick={() => onInbox()}>inbox</button>
-            <button onClick={() => onSends()}>mail sends</button>
-            <button onClick={() => onTrash()}>trash</button>
-        </div>
+        <MailSideNav
+        onSendMail={onSendMail}
+        onInbox={onInbox}
+        onSends={onSends}
+        onTrash={onTrash}
+        
+        />
         <MailList
             emails={emails}
             onRemoveEmail={onRemoveEmail}
