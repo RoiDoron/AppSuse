@@ -1,1 +1,16 @@
  /* mail list */
+
+ .emails-section {
+     width: 100%;
+     margin-right: 1em;
+ }
+
+ .emails-section a{
+    padding: 10px;
+   
+ }
+
+ .long-txt p{
+     margin: 0;
+ }
+ 
