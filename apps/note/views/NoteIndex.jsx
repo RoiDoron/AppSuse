@@ -1,6 +1,7 @@
 const { useState, useEffect } = React
 // const { Link } = ReactRouterDOM
 import { NoteList } from "../cmps/NoteList.jsx"
+import { AddNote } from "../cmps/AddNote.jsx"
 
 import { noteService } from "../services/note.service.js"
 
@@ -32,7 +33,7 @@ export function NoteIndex() {
         noteService.save(noteToUpdate)
             .then((savedNote) => {
                 console.log('updated')
-                setNotes(prevNotes => prevNotes.map(note => note.id === savedNote.id ? savedNote : note ))
+                setNotes(prevNotes => prevNotes.map(note => note.id === savedNote.id ? savedNote : note))
             })
             .catch(err => {
                 console.error('had issues with updating note', err)
@@ -42,6 +43,7 @@ export function NoteIndex() {
     if (!notes) return <div>Loading...</div>
     return (
         <section className="note-index">
+            <AddNote loadNotes={loadNotes} />
             <NoteList onRemoveNote={onRemoveNote} onUpdateNote={onUpdateNote} notes={notes} />
         </section>
 
