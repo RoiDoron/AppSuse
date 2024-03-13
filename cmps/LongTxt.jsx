@@ -1,6 +1,6 @@
 const { useState } = React
 
-export function LongTxt({ txt, length = 100 }) {
+export function LongTxt({ txt, length = 40 }) {
   const [slicedTxt, setSlicedTxt] = useState(txt.slice(0, length))
   const [isSliced, setIsSliced] = useState(true)
 
@@ -24,8 +24,8 @@ export function LongTxt({ txt, length = 100 }) {
       <p>
         {slicedTxt}
         {txt.length > length && (
-          <span>
-            <button className="long-text-btn" onClick={toggleIsSliced}>...</button>
+          <span>...
+            {/* <button className="long-text-btn" onClick={toggleIsSliced}>...</button> */}
           </span>
         )}
       </p>

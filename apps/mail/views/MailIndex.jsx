@@ -33,7 +33,7 @@ export function MailIndex() {
 
     if (!emails) return <div>loading...</div>
     console.log(emails);
-    return <section className="emails-index flex justify-between ">
+    return <section className="emails-index flex  ">
         <div>hi im filter and nav</div>
         <MailList 
         emails={emails}

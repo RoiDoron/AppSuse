@@ -1,3 +1,5 @@
+import { LongTxt } from "../../../cmps/LongTxt.jsx"
+
 const { useState, Fragment } = React
 
 export function MailRow({ mail, onRemoveEmail }) {
@@ -13,12 +15,12 @@ export function MailRow({ mail, onRemoveEmail }) {
     return <a href={ref()} className="mail-row flex space-between">
         <h3>{mail.from}</h3>
         <div>{mail.subject}</div>
-        <div>{mail.body}</div>
-        <div> <button>read</button> <button onClick={() => onRemoveEmail(mail.id)}>X</button></div>
-        <div>{dateMaker(mail.sentAt)}</div>
+        <div><LongTxt txt={mail.body} /></div>
+
+        <div>
+            <div> <button>read</button> <button onClick={() => onRemoveEmail(mail.id)}>X</button>
+            {dateMaker(mail.sentAt)}</div>
+        </div>
     </a>
-
-
-
 
 }
