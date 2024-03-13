@@ -16,11 +16,14 @@ export const mailService = {
 }
 
 
-function query() {
-    return storageService.query(KEY_EMAIL).then((emails) => {
-        if (!emails || !emails.length) {
-            emails = _createEmails()
-            _saveEmailToStorage()
+function query(filterBy) {
+    console.log(filterBy);
+    
+    return storageService.query(KEY_EMAIL)
+    .then((emails) => {
+        if (filterBy.stat) {
+            const regex = new RegExp(filterBy.stat, 'i')
+            emails = emails.filter(mail => regex.test(mail.stat))
         }
         return emails
     })
@@ -43,7 +46,7 @@ function save(email) {
 }
 
 function getDefaultFilter() {
-    return { title: '', price: 0 }
+    return { stat:'inbox'}
 }
 
 function _createEmails() {
@@ -51,34 +54,41 @@ function _createEmails() {
     if (!emails || !emails.length) {
         emails =[]
 
-        emails.push(_createEmail('Miss you!', 'Would love to catch up sometimes', false, 1551133930594, null, 'momo@momo.com', 'user@appsus.com'))
+        emails.push(_createEmail('Miss you!', 'Would love to catch up sometimes', false, 1551133930594, null, 'momo@momo.com', 'user@appsus.com','inbox'))
         emails.push(_createEmail('Hi roi',
             'Do you now how to use React? we are interesting on hiring you. please contact me! yuval HR google',
             false,
             1551133930594,
             null,
             'yuval_hiring@gmail.com',
-            'user@appsus.com'))
+            'user@appsus.com','inbox'))
         emails.push(_createEmail('Miss you!',
             'Would love to catch up sometimes',
             false,
             1651133930594,
             null,
             'momo@momo.com',
-            'user@appsus.com'))
+            'user@appsus.com','inbox'))
         emails.push(_createEmail('Miss you!',
             'Would love to catch up sometimes',
             false,
             1651133930594 + 500000,
             null,
             'momo@momo.com',
-            'user@appsus.com'))
+            'user@appsus.com','trash'))
+        emails.push(_createEmail('Miss you!',
+            'Would love to catch up sometimes',
+            false,
+            1651133930594 + 500000,
+            null,
+            'momo@momo.com',
+            'user@appsus.com','send'))
             utilService.saveToStorage(KEY_EMAIL,emails)
     }
     return emails
 }
 
-function _createEmail(subject, body, isRead = false, sentAt = Date.now(), removedAt, from, to) {
+function _createEmail(subject, body, isRead = false, sentAt = Date.now(), removedAt, from, to,stat) {
     return {
         id: utilService.makeId(),
         subject,
@@ -87,7 +97,8 @@ function _createEmail(subject, body, isRead = false, sentAt = Date.now(), remove
         sentAt,
         removedAt: null,
         from,
-        to
+        to,
+        stat
 
     }
 }
@@ -111,3 +122,33 @@ const loggedInUser = {
     email: 'user@appsus.com',
     fullname: 'Mahatma Appsus'
 }
+
+
+const gSendEmail = [{
+    id: 'e101',
+    subject: 'Miss you!',
+    body: 'Would love to catch up sometimes',
+    isRead: false,
+    sentAt: 1551133930594,
+    removedAt: null,
+    from: 'user@appsus.com',
+    to: 'momo@momo.com'
+},{
+    id: 'e101',
+    subject: 'Miss you!',
+    body: 'Would love to catch up sometimes',
+    isRead: false,
+    sentAt: 1551133930594,
+    removedAt: null,
+    from: 'user@appsus.com',
+    to: 'momo@momo.com'
+},{
+    id: 'e101',
+    subject: 'Miss you!',
+    body: 'Would love to catch up sometimes',
+    isRead: false,
+    sentAt: 1551133930594,
+    removedAt: null,
+    from: 'user@appsus.com',
+    to: 'momo@momo.com'
+}]
