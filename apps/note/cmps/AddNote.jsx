@@ -2,11 +2,14 @@ const { useState, useEffect } = React
 
 import { noteService } from "../services/note.service.js"
 
-export function AddNote({loadNotes}) {
+export function AddNote({ loadNotes }) {
     const [newNote, setNewNote] = useState(noteService.getEmptyNote())
+    const cmps = ['NoteTxt', 'NoteImg', 'NoteTodos', 'NoteVideo']
+    let cmpType = 'NoteTxt'
+    const [cmpInput, setCmpInput] = useState( <DynamicCmp cmpType = {cmpType} handleChange = {handleChange} />)
     function handleChange({ target }) {
         const field = target.id
-        // console.log(field)
+        
         let value = target.value
         console.log(value)
         switch (target.type) {
@@ -17,7 +20,6 @@ export function AddNote({loadNotes}) {
             default:
                 break
         }
-        // setNewNote(prevNoteToEdit => ({ ...prevNoteToEdit, info: {...newNote.info, [field]: value } }))
         setNewNote(prevNoteToEdit => ({ ...prevNoteToEdit, [field]: value }))
     }
     useEffect(() => {
@@ -33,16 +35,61 @@ export function AddNote({loadNotes}) {
                 loadNotes()
                 setNewNote(noteService.getEmptyNote())
             })
+    }
 
+    useEffect(() => {
+        console.log(cmpInput)
+    }, [cmpInput])
+    
 
+    function onChangeCmp(type){
+        cmpType = type
+        console.log(cmpType)
+        setNewNote(noteService.getEmptyNote())
+        setCmpInput( <DynamicCmp cmpType = {cmpType} handleChange = {handleChange} />)
     }
 
     return (
         <section className="add-note">
             <form onSubmit={onSaveNote}>
-                <input type="text" onInput={handleChange} id="txt" placeholder="Enter new note here" />
+                <DynamicCmp cmpType = {cmpType} handleChange = {handleChange} />
             </form>
+            <div>
+                <button onClick={() => onChangeCmp('NoteTxt')}>🗒️</button>
+                <button onClick={() => onChangeCmp('NoteImg')}>🖼️</button>
+                <button onClick={() => onChangeCmp('NoteTodos')}>📝</button>
+                <button onClick={() => onChangeCmp('NoteVideo')}>📺</button>
+            </div>
 
         </section>
     )
+}
+
+function DynamicCmp(props) {
+    switch (props.cmpType) {
+        case 'NoteTxt':
+            return <NoteTxt {...props} />
+        case 'NoteImg':
+            return <NoteImg {...props} />
+        case 'NoteTodos':
+            return <NoteTodos {...props} />
+        case 'NoteVideo':
+            return <NoteVideo {...props} />
+    }
+}
+
+function NoteTxt(props){
+ return <input type="text" onInput={props.handleChange} id="txt" placeholder="Enter new note here..." />
+}
+
+function NoteImg(props){
+    return <input type="text" onInput={props.handleChange} id="url" placeholder="Enter image url..." />
+}
+
+function NoteTodos(props){
+    return <input type="text" onInput={props.handleChange} id="title" placeholder="Enter Todo title..." />
+}
+
+function NoteVideo(props){
+    return <input type="text" onInput={props.handleChange} id="src" placeholder="Enter video src..." />
 }

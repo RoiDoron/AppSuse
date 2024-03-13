@@ -73,13 +73,13 @@ function save(note) {
     if (note.id) {
         return storageService.put(NOTE_KEY, note)
     } else {
-        note = _createNote(note.title, note.txt, note.url)
+        note = _createNote(note.title, note.txt, note.url, note.src)
         return storageService.post(NOTE_KEY, note)
     }
 }
 
 function getEmptyNote() {
-    return { id: '', title : '', txt:'' , url: ''}
+    return { id: '', title : '', txt:'' , url: '', src: ''}
 }
 
 function _createNotes() {
@@ -91,7 +91,7 @@ function _createNotes() {
     }
 }
 
-function _createNote(title, txt, url) {
+function _createNote(title, txt, url, src) {
     // const note = getEmptyNote()
     const note = {}
     note.id = utilService.makeId()
@@ -105,6 +105,7 @@ function _createNote(title, txt, url) {
         title: title,
         txt: txt,
         url: url,
+        src: src,
     }
     return note
 }
