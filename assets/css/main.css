@@ -25,3 +25,5 @@
 
 @import './apps/mail/cmps/MailList.css';
 @import './apps/mail/cmps/EmailCompose.css';
+@import './apps/mail/cmps/MailRow.css';
+@import './apps/mail/cmps/MailNavBar.css';
