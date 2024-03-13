@@ -21,17 +21,21 @@ export function MailIndex() {
             })
     }
 
-    function onRemoveEmail(emailId) {
-        console.log(emailId);
-        mailService.remove(emailId)
-            .then(() => {
-                setEmails((prevEmail) => prevEmail.filter(email => email.id !== emailId))
-                // showSuccessMsg(`email removed successfully (${emailId})`)
-            })
-            .catch((err) => {
-                console.log('Had issues removing car', err)
-                // showErrorMsg(`Could not remove (${emailId})`)
-            })
+    function onRemoveEmail(mail) {
+        const emailId = mail.id
+        if (mail.stat === 'inbox') {
+            mail.stat = 'trash'
+            mailService.save(mail)
+        } else
+            mailService.remove(emailId)
+                .then(() => {
+                    setEmails((prevEmail) => prevEmail.filter(email => email.id !== emailId))
+                    // showSuccessMsg(`email removed successfully (${emailId})`)
+                })
+                .catch((err) => {
+                    console.log('Had issues removing car', err)
+                    // showErrorMsg(`Could not remove (${emailId})`)
+                })
     }
 
     function onSendMail() {
@@ -39,34 +43,34 @@ export function MailIndex() {
         console.log(sendingMail);
     }
 
-    function onInbox(){
-        setFilterBy(prevFilterBy=>({...prevFilterBy,stat:'inbox'}))
+    function onInbox() {
+        setFilterBy(prevFilterBy => ({ ...prevFilterBy, stat: 'inbox' }))
     }
 
-    function onSends(){
-        setFilterBy(prevFilterBy=>({...prevFilterBy,stat:'send'}))
+    function onSends() {
+        setFilterBy(prevFilterBy => ({ ...prevFilterBy, stat: 'send' }))
     }
 
-    function onTrash(){
-        setFilterBy(prevFilterBy=>({...prevFilterBy,stat:'trash'}))
+    function onTrash() {
+        setFilterBy(prevFilterBy => ({ ...prevFilterBy, stat: 'trash' }))
     }
 
-   
+
     if (!emails) return <div>loading...</div>
     console.log(emails);
     return <section className="emails-index flex  ">
         <div className="nav-bar">
             <button onClick={() => onSendMail()}>send email</button>
-            <button onClick={()=>onInbox()}>inbox</button>
-            <button onClick={()=>onSends()}>mail sends</button>
-            <button onClick={()=>onTrash()}>trash</button>
+            <button onClick={() => onInbox()}>inbox</button>
+            <button onClick={() => onSends()}>mail sends</button>
+            <button onClick={() => onTrash()}>trash</button>
         </div>
         <MailList
             emails={emails}
             onRemoveEmail={onRemoveEmail}
         />
-        {sendingMail && 
-        <EmailCompose onSendMail={onSendMail} />
+        {sendingMail &&
+            <EmailCompose onSendMail={onSendMail} />
 
         }
     </section>

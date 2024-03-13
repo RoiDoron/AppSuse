@@ -1,6 +1,10 @@
 import { storageService } from "../../../services/async-storage.service.js"
 import { utilService } from "../../../services/util.service.js"
 
+const loggedInUser = {
+    email: 'user@appsus.com',
+    fullname: 'Mahatma Appsus'
+}
 
 const KEY_EMAIL = 'emailDB'
 
@@ -13,6 +17,7 @@ export const mailService = {
     save,
     getDefaultFilter,
     remove,
+    sendingEmail
 }
 
 
@@ -50,7 +55,9 @@ function getDefaultFilter() {
 }
 
 function _createEmails() {
+    
     let emails = utilService.loadFromStorage(KEY_EMAIL)
+    console.log(emails);
     if (!emails || !emails.length) {
         emails =[]
 
@@ -88,7 +95,16 @@ function _createEmails() {
     return emails
 }
 
-function _createEmail(subject, body, isRead = false, sentAt = Date.now(), removedAt, from, to,stat) {
+function sendingEmail(email){
+const mail = _createEmail()
+mail.to = email.to
+mail.body = email.body
+mail.subject = email.subject
+
+storageService.post(KEY_EMAIL, mail)
+}
+
+function _createEmail(subject, body, isRead = false, sentAt = Date.now(), removedAt, from = loggedInUser.email, to,stat='send') {
     return {
         id: utilService.makeId(),
         subject,
@@ -118,10 +134,6 @@ const gEmail = {
     to: 'user@appsus.com'
 }
 
-const loggedInUser = {
-    email: 'user@appsus.com',
-    fullname: 'Mahatma Appsus'
-}
 
 
 const gSendEmail = [{

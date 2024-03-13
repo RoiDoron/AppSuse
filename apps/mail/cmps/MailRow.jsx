@@ -11,7 +11,7 @@ export function MailRow({ mail, onRemoveEmail }) {
     }
 
 
-    return <Link to={`mail/${mail.id}`}>
+    return <Link to={`${mail.id}`}>
         <section className="mail-row flex space-between">
             <h3>{mail.from}</h3>
             <div>{mail.subject}</div>
@@ -20,7 +20,7 @@ export function MailRow({ mail, onRemoveEmail }) {
             <div>
                 <div>
                     <button>read</button>
-                    <button onClick={() => onRemoveEmail(mail.id)}>X</button>
+                    <button onClick={() => onRemoveEmail(mail)}>X</button>
                     {dateMaker(mail.sentAt)}</div>
             </div>
         </section>
