@@ -1,8 +1,11 @@
-import { storageService } from "../../../services/async-storage.service"
-import { utilService } from "../../../services/util.service"
+import { storageService } from "../../../services/async-storage.service.js"
+import { utilService } from "../../../services/util.service.js"
 
+
+const KEY_EMAIL = 'emailDB'
 
 _createEmails()
+
 
 export const mailService = {
     query,
@@ -12,7 +15,6 @@ export const mailService = {
     remove,
 }
 
-const KEY_EMAIL = 'emailDB'
 
 function query() {
     return storageService.query(KEY_EMAIL).then((emails) => {
@@ -45,30 +47,34 @@ function getDefaultFilter() {
 }
 
 function _createEmails() {
-    let emails = utilService
-    if(e)
-    emails.push(_createEmail('Miss you!', 'Would love to catch up sometimes', false, 1551133930594, null, 'momo@momo.com', 'user@appsus.com'))
-    emails.push(_createEmail('Hi roi',
-        'Do you now how to use React? we are interesting on hiring you. please contact me! yuval HR google',
-        false,
-        1551133930594,
-        null,
-        'yuval_hiring@gmail.com',
-        'user@appsus.com'))
-    emails.push(_createEmail('Miss you!',
-        'Would love to catch up sometimes',
-        false,
-        1651133930594,
-        null,
-        'momo@momo.com',
-        'user@appsus.com'))
-    emails.push(_createEmail('Miss you!',
-        'Would love to catch up sometimes',
-        false,
-        1651133930594+500000,
-        null,
-        'momo@momo.com',
-        'user@appsus.com'))
+    let emails = utilService.loadFromStorage(KEY_EMAIL)
+    if (!emails || !emails.length) {
+        emails =[]
+
+        emails.push(_createEmail('Miss you!', 'Would love to catch up sometimes', false, 1551133930594, null, 'momo@momo.com', 'user@appsus.com'))
+        emails.push(_createEmail('Hi roi',
+            'Do you now how to use React? we are interesting on hiring you. please contact me! yuval HR google',
+            false,
+            1551133930594,
+            null,
+            'yuval_hiring@gmail.com',
+            'user@appsus.com'))
+        emails.push(_createEmail('Miss you!',
+            'Would love to catch up sometimes',
+            false,
+            1651133930594,
+            null,
+            'momo@momo.com',
+            'user@appsus.com'))
+        emails.push(_createEmail('Miss you!',
+            'Would love to catch up sometimes',
+            false,
+            1651133930594 + 500000,
+            null,
+            'momo@momo.com',
+            'user@appsus.com'))
+            utilService.saveToStorage(KEY_EMAIL,emails)
+    }
     return emails
 }
 
@@ -87,7 +93,7 @@ function _createEmail(subject, body, isRead = false, sentAt = Date.now(), remove
 }
 
 function _saveEmailToStorage() {
-    storageServicervice.save(KEY_EMAIL, gEmail)
+    storageService.save(KEY_EMAIL, gEmail)
 }
 
 const gEmail = {
