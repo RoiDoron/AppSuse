@@ -32,7 +32,13 @@ function query(filterBy) {
         }
         if (filterBy.desc) {
             const regex = new RegExp(filterBy.desc, 'i')
-            emails = emails.filter(mail => regex.test(mail.from))
+            emails = emails.filter((mail) => 
+                regex.test(mail.from)||
+                regex.test(mail.to)||
+                regex.test(mail.subject)||
+                regex.test(mail.body)
+            
+                )
         }
         return emails
     })
