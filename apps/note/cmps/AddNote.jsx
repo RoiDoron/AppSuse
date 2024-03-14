@@ -5,11 +5,10 @@ import { noteService } from "../services/note.service.js"
 export function AddNote({ loadNotes }) {
     const [newNote, setNewNote] = useState(noteService.getEmptyNote())
     const cmps = ['NoteTxt', 'NoteImg', 'NoteTodos', 'NoteVideo']
-    let cmpType = 'NoteTxt'
-    const [cmpInput, setCmpInput] = useState( <DynamicCmp cmpType = {cmpType} handleChange = {handleChange} />)
+    const [cmpInput, setCmpInput] = useState('NoteTxt')
     function handleChange({ target }) {
         const field = target.id
-        
+
         let value = target.value
         console.log(value)
         switch (target.type) {
@@ -40,19 +39,17 @@ export function AddNote({ loadNotes }) {
     useEffect(() => {
         console.log(cmpInput)
     }, [cmpInput])
-    
 
-    function onChangeCmp(type){
-        cmpType = type
-        console.log(cmpType)
+
+    function onChangeCmp(type) {
+        setCmpInput(type)
         setNewNote(noteService.getEmptyNote())
-        setCmpInput( <DynamicCmp cmpType = {cmpType} handleChange = {handleChange} />)
     }
 
     return (
         <section className="add-note">
             <form onSubmit={onSaveNote}>
-                <DynamicCmp cmpType = {cmpType} handleChange = {handleChange} />
+                <DynamicCmp cmpType={cmpInput} handleChange={handleChange} />
             </form>
             <div>
                 <button onClick={() => onChangeCmp('NoteTxt')}>🗒️</button>
@@ -78,18 +75,18 @@ function DynamicCmp(props) {
     }
 }
 
-function NoteTxt(props){
- return <input type="text" onInput={props.handleChange} id="txt" placeholder="Enter new note here..." />
+function NoteTxt(props) {
+    return <input type="text" onInput={props.handleChange} id="txt" placeholder="Enter new note here..." />
 }
 
-function NoteImg(props){
+function NoteImg(props) {
     return <input type="text" onInput={props.handleChange} id="url" placeholder="Enter image url..." />
 }
 
-function NoteTodos(props){
+function NoteTodos(props) {
     return <input type="text" onInput={props.handleChange} id="title" placeholder="Enter Todo title..." />
 }
 
-function NoteVideo(props){
+function NoteVideo(props) {
     return <input type="text" onInput={props.handleChange} id="src" placeholder="Enter video src..." />
 }

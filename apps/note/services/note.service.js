@@ -22,7 +22,7 @@ const demoNotes = [
         isPinned: false,
         info: {
             url: 'http://books.google.com/books/content?id=nBuA0hmspdMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
-            title: 'Bobi and Me'
+            // title: 'Bobi and Me'
         },
         style: {
             backgroundColor: '#00d'

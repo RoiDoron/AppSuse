@@ -1,6 +1,21 @@
  /* note list */
 
  .note-list{
-    display: flex;
+    /* display: flex; */
     gap: 1em;
+    column-count: 3;
+ }
+
+ .note-index{
+   text-align: center;
+ }
+
+ .add-note{
+   display: inline-flex;
+   place-content: center;
+   background: black;
+ }
+
+ .note-li {
+   margin-bottom: 1em;
  }
