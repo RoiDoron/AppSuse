@@ -1,6 +1,4 @@
-.mail-side-nav button{
-    display: block;
-}
+
 .mail-side-nav{
     display: flex;
   flex-direction: column;
@@ -27,12 +25,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
+    width: max-content;
+    padding: 0.5em;
     height: 60px;
     margin-top: 2rem;
-    border-radius: 30px;
-  
-    color: #f0eeee;
+    border-radius: 1em;
+  background-color: #c2e7ff;
+    /* color: #f0eeee; */
     font-size: 1.5rem;
     cursor: pointer;
     margin-left: 5px;
@@ -41,7 +40,8 @@
   }
 
   .mail-side-nav-compose:hover {
-    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 8px 1px rgb(60 64 67 / 15%);
+    box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302), 0 4px 8px 3px rgba(60,64,67,0.149);
+    background-color: #c2e7ff;
   }
   
   .mail-side-nav ul {
@@ -56,7 +56,7 @@
     cursor: pointer;
   }
   .mail-side-nav ul > li:hover {
-    background-color: #f1f3f4;
+    background-color: rgba(32, 33, 36, 0.059);
     border-radius: 0px 30px 30px 0;
   }
   
@@ -66,16 +66,19 @@
   }
   
   .active-side {
-    color: #d61200;
+    /* color: #d61200; */
+    background-color: #d3e3fd;
     font-weight: bold;
   
     border-radius: 0px 30px 30px 0;
-    background-color: #fce8e6;
+    /* background-color: #fce8e6; */
   }
 
 @media (min-width: 1020px) {
     .mail-side-nav {
       transform: translate(0);
       position: static;
+     box-shadow: none;
+     background-color: #f7f8fa;
     }
   }

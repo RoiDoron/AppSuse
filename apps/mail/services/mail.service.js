@@ -30,6 +30,16 @@ function query(filterBy) {
             const regex = new RegExp(filterBy.stat, 'i')
             emails = emails.filter(mail => regex.test(mail.stat))
         }
+        if (filterBy.desc) {
+            const regex = new RegExp(filterBy.desc, 'i')
+            emails = emails.filter((mail) => 
+                regex.test(mail.from)||
+                regex.test(mail.to)||
+                regex.test(mail.subject)||
+                regex.test(mail.body)
+            
+                )
+        }
         return emails
     })
 }
@@ -51,7 +61,7 @@ function save(email) {
 }
 
 function getDefaultFilter() {
-    return { stat:'inbox'}
+    return { stat:'inbox',desc:''}
 }
 
 function _createEmails() {

@@ -1,3 +1,35 @@
-.read{
-background-color: var(--gray2) ;
+.read {
+    background-color: #f2f6fc;
+}
+
+a {
+    position: relative;
+}
+
+.mail-row button {
+
+    opacity: 0;
+    font-size: 1em;
+    border: none;
+
+    margin-right: 1em;
+    background-color: rgba(255, 255, 255, 0);
+    transition: 0.3s;
+}
+
+.mail-row {
+    border: 1px solid var(--gray2);
+}
+
+.mail-row:hover {
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
+    z-index: 2;
+}
+
+.mail-row:hover button {
+    opacity: 1;
+}
+
+.mail-row button:hover {
+    /* font-size: 1.2em; */
 }

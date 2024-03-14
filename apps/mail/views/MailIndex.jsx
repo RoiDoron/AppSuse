@@ -1,10 +1,12 @@
+const { useState, useEffect } = React
+const { Link, useSearchParams } = ReactRouterDOM
+
 import { EmailCompose } from "../cmps/EmailCompose.jsx"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailSideNav } from "../cmps/MailSideNav.jsx"
+
 import { mailService } from "../services/mail.service.js"
 
-const { useState, useEffect } = React
-const { Link, useSearchParams } = ReactRouterDOM
 
 export function MailIndex() {
     const [emails, setEmails] = useState(null)
@@ -19,7 +21,14 @@ export function MailIndex() {
         mailService.query(filterBy)
             .then((emails) => {
                 setEmails(emails)
+                console.log(filterBy);
             })
+    }
+
+    function onSetFilter(fieldsToUpdate) {
+        console.log('fieldsToUpdate', fieldsToUpdate)
+
+        setFilterBy(prevFilter => ({ ...prevFilter, ...fieldsToUpdate }))
     }
 
     function onRemoveEmail(mail) {
@@ -27,6 +36,8 @@ export function MailIndex() {
         if (mail.stat === 'inbox') {
             mail.stat = 'trash'
             mailService.save(mail)
+                .then(() => loadEmails())
+
         } else
             mailService.remove(emailId)
                 .then(() => {
@@ -58,16 +69,19 @@ export function MailIndex() {
 
 
     if (!emails) return <div>loading...</div>
+    const { stat, desc } = filterBy
     console.log(emails);
     return <section className="emails-index flex  ">
         <MailSideNav
-        onSendMail={onSendMail}
-        onInbox={onInbox}
-        onSends={onSends}
-        onTrash={onTrash}
-        
+            onSendMail={onSendMail}
+            onInbox={onInbox}
+            onSends={onSends}
+            onTrash={onTrash}
+
         />
         <MailList
+            onSetFilter={onSetFilter}
+            filterBy={{ desc }}
             emails={emails}
             onRemoveEmail={onRemoveEmail}
         />

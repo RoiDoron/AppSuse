@@ -4,10 +4,3 @@
     
  }
 
- .mail-row{
-    border: 1px solid var(--gray2);
- }
-
- .mail-row:hover{
-    background-color: var(--gray1);
- }
