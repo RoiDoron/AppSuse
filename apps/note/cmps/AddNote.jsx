@@ -8,9 +8,8 @@ export function AddNote({ loadNotes }) {
     const [cmpInput, setCmpInput] = useState('NoteTxt')
     function handleChange({ target }) {
         const field = target.id
-
         let value = target.value
-        console.log(value)
+        
         switch (target.type) {
             case 'number':
             case 'range':
@@ -48,14 +47,14 @@ export function AddNote({ loadNotes }) {
 
     return (
         <section className="add-note">
-            <form onSubmit={onSaveNote}>
+            <form className="note-form" onSubmit={onSaveNote}>
                 <DynamicCmp cmpType={cmpInput} handleChange={handleChange} />
             </form>
             <div>
-                <button onClick={() => onChangeCmp('NoteTxt')}><i class="far fa-sticky-note " aria-hidden="true"></i></button>
-                <button onClick={() => onChangeCmp('NoteImg')}><i class="far fa-images " aria-hidden="true"></i></button>
-                <button onClick={() => onChangeCmp('NoteTodos')}><i class="far fa-list-alt " aria-hidden="true"></i></button>
-                <button onClick={() => onChangeCmp('NoteVideo')}><i class="fab fa-youtube active " aria-hidden="true"></i></button>
+                <button className="input-type" onClick={() => onChangeCmp('NoteTxt')}><i class="far fa-sticky-note " aria-hidden="true"></i></button>
+                <button className="input-type" onClick={() => onChangeCmp('NoteImg')}><i class="far fa-images " aria-hidden="true"></i></button>
+                <button className="input-type" onClick={() => onChangeCmp('NoteTodos')}><i class="far fa-list-alt " aria-hidden="true"></i></button>
+                <button className="input-type" onClick={() => onChangeCmp('NoteVideo')}><i class="fab fa-youtube active " aria-hidden="true"></i></button>
             </div>
 
         </section>
@@ -78,17 +77,17 @@ function DynamicCmp(props) {
 }
 
 function NoteTxt(props) {
-    return <input type="text" onInput={props.handleChange} id="txt" placeholder="Enter new note here..." />
+    return <input className="input-add-note" type="text" onInput={props.handleChange} id="txt" placeholder="Enter new note here..." />
 }
 
 function NoteImg(props) {
-    return <input type="text" onInput={props.handleChange} id="url" placeholder="Enter image url..." />
+    return <input className="input-add-note" type="text" onInput={props.handleChange} id="url" placeholder="Enter image url..." />
 }
 
 function NoteTodos(props) {
-    return <input type="text" onInput={props.handleChange} id="title" placeholder="Enter Todo title..." />
+    return <input className="input-add-note" type="text" onInput={props.handleChange} id="title" placeholder="Enter Todo title..." />
 }
 
 function NoteVideo(props) {
-    return <input type="text" onInput={props.handleChange} id="src" placeholder="Enter video src..." />
+    return <input className="input-add-note" type="text" onInput={props.handleChange} id="src" placeholder="Enter video src..." />
 }

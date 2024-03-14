@@ -46,3 +46,14 @@
 .note-preview:hover .pinned-note {
     opacity: 1; 
 }
+
+.input-add-note{
+    padding: 1em;
+    width: 20vw;
+    border-radius: 15px;
+}
+
+.input-type{
+    height: 100%;
+}
+
