@@ -3,20 +3,46 @@
     padding: 1em;
     position: relative;
     border-radius: 1em;
+    break-inside:avoid;
+    line-break:anywhere;
 }
 
-.remove-btn{
-    /* position: absolute; */
-    /* bottom: 0; */
+.remove-btn {
+    opacity: 0; 
+    transition: opacity 0.5s ease; 
+    position: absolute;
+    bottom: 0.5em;
+    right:0.5em;
 }
 
-.img-preview{
-    height: 100%;
-    width: 70%;
+.note-preview:hover .remove-btn {
+    opacity: 1; 
+}
+.color-picking{
+    opacity: 0; 
+    transition: opacity 0.5s ease; 
+    position: absolute;
+    bottom: 0.5em;
+    right:3em;
 }
 
-.pinned-note{
+.note-preview:hover .color-picking {
+    opacity: 1;
+}
+
+.img-preview {
+    object-fit: cover;
+    width: 100%;
+}
+
+.note-preview .pinned-note {
     position: absolute;
     top: 0;
     left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.note-preview:hover .pinned-note {
+    opacity: 1; 
 }
