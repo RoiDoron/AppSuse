@@ -20,12 +20,25 @@
     position: relative;
     z-index: 3;
  }
- .emails-section-header{
-    background-color: black;
-    color: white;
+ .mail-list-container{
+    padding: 0 10px 0 10px;
+    background-color: white;
+    
+}
 
+.mail-list-header{
+    margin-top: 1em;
+    height: 30px;
+    background-color: white;
+    border-radius: 0.5em 0.5em 0 0;
+    
+    /* background-color: aqua; */
+}
+.mail-list-footer{
+    height: 30px;
+    background-color: white;
+    border-radius: 0 0 0.5em 0.5em ;
+    
+    /* background-color: aqua; */
  }
  
- .emails-section-header h1{
-    padding: 10px;
- }
