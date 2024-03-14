@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-
+const { useOutletContext } = ReactRouterDOM
 import { MailRow } from "./MailRow.jsx";
 
 
@@ -34,7 +34,7 @@ export function MailList({ emails, onRemoveEmail, onSetFilter, filterBy }) {
 
             />
         </form>
-        <div className="mail-list-header"></div>
+        
         <section className="mail-list-container">
 
             {
@@ -45,6 +45,6 @@ export function MailList({ emails, onRemoveEmail, onSetFilter, filterBy }) {
                     />)
             }
         </section>
-        <div className="mail-list-footer"></div>
+        
     </section>
 }

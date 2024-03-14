@@ -22,27 +22,14 @@
  }
 
  .mail-list-container {
-     padding: 0 10px 0 10px;
-     background-color: white;
-
- }
-
- .mail-list-header {
      margin-top: 1em;
-     height: 30px;
+     width: 95vw;
+     padding: 30px 10px 30px 10px;
      background-color: white;
-     border-radius: 0.5em 0.5em 0 0;
-
-     /* background-color: aqua; */
+     border-radius: 1.5em;
  }
 
- .mail-list-footer {
-     height: 30px;
-     background-color: white;
-     border-radius: 0 0 0.5em 0.5em;
 
-     /* background-color: aqua; */
- }
 
  .filter-input {
      position: relative;
@@ -55,9 +42,9 @@
  }
 
  .filter-input-btn {
-    border-radius: 100%;
-    height: 2.8em;
-    width: 2.8em;
+     border-radius: 100%;
+     height: 2.8em;
+     width: 2.8em;
      font-size: 1.1em;
      position: absolute;
      /* top: 0; */
@@ -91,3 +78,10 @@
  .filter-input input:focus {
      outline: none;
  }
+
+ @media (min-width: 1020px) {
+    .mail-list-container {
+      /* width: 20vw; */
+      width: 75vw;
+    }
+  }
