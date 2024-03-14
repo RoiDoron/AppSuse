@@ -39,7 +39,16 @@ const demoNotes = [
                 { txt: 'Coding power', doneAt: 187111111 }
             ]
         }
+    },
+    {
+        id: 'n104',
+        type: 'NoteVideo',
+        isPinned: false,
+        info: {
+            src: 'https://www.youtube.com/embed/tgbNymZ7vqY',
+        }
     }
+
 ]
 
 const NOTE_KEY = 'noteDB'
@@ -79,7 +88,7 @@ function save(note) {
 }
 
 function getEmptyNote() {
-    return { id: '', title : '', txt:'' , url: '', src: ''}
+    return { id: '', title: '', txt: '', url: '', src: '' }
 }
 
 function _createNotes() {
