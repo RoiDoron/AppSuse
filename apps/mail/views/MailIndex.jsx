@@ -1,10 +1,11 @@
 const { useState, useEffect } = React
-const { Link, useSearchParams } = ReactRouterDOM
+const { Link, useSearchParams,Outlet } = ReactRouterDOM
 
 import { EmailCompose } from "../cmps/EmailCompose.jsx"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailSideNav } from "../cmps/MailSideNav.jsx"
 
+import { eventBusService, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { mailService } from "../services/mail.service.js"
 
 
@@ -36,17 +37,23 @@ export function MailIndex() {
         if (mail.stat === 'inbox') {
             mail.stat = 'trash'
             mailService.save(mail)
-                .then(() => loadEmails())
-
+                .then(() =>{
+                    loadEmails()
+                    showSuccessMsg('Email moved to trash')
+                } )
+                .catch((err) => {
+                    console.log('Had issues removing car', err)
+                    showErrorMsg(`Could not remove (${emailId})`)
+                })
         } else
             mailService.remove(emailId)
                 .then(() => {
                     setEmails((prevEmail) => prevEmail.filter(email => email.id !== emailId))
-                    // showSuccessMsg(`email removed successfully (${emailId})`)
+                    showSuccessMsg(`email removed successfully (${emailId})`)
                 })
                 .catch((err) => {
                     console.log('Had issues removing car', err)
-                    // showErrorMsg(`Could not remove (${emailId})`)
+                    showErrorMsg(`Could not remove (${emailId})`)
                 })
     }
 
@@ -79,12 +86,16 @@ export function MailIndex() {
             onTrash={onTrash}
 
         />
-        <MailList
-            onSetFilter={onSetFilter}
-            filterBy={{ desc }}
-            emails={emails}
-            onRemoveEmail={onRemoveEmail}
-        />
+        <div>
+            <MailList
+                onSetFilter={onSetFilter}
+                filterBy={{ desc }}
+                emails={emails}
+                onRemoveEmail={onRemoveEmail}
+            />
+          
+        </div>
+
         {sendingMail &&
             <EmailCompose onSendMail={onSendMail} />
 
