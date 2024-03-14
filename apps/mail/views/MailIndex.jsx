@@ -26,7 +26,9 @@ export function MailIndex() {
         const emailId = mail.id
         if (mail.stat === 'inbox') {
             mail.stat = 'trash'
-            mailService.save(mail)
+             mailService.save(mail)
+             .then(()=>loadEmails())
+            
         } else
             mailService.remove(emailId)
                 .then(() => {
@@ -58,16 +60,18 @@ export function MailIndex() {
 
 
     if (!emails) return <div>loading...</div>
+    const { stat } = filterBy
     console.log(emails);
     return <section className="emails-index flex  ">
         <MailSideNav
-        onSendMail={onSendMail}
-        onInbox={onInbox}
-        onSends={onSends}
-        onTrash={onTrash}
-        
+            onSendMail={onSendMail}
+            onInbox={onInbox}
+            onSends={onSends}
+            onTrash={onTrash}
+
         />
         <MailList
+            stat={stat}
             emails={emails}
             onRemoveEmail={onRemoveEmail}
         />

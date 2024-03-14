@@ -1,11 +1,11 @@
 import { MailRow } from "./MailRow.jsx";
 
 
-export function MailList({emails,onRemoveEmail}) {
+export function MailList({emails,onRemoveEmail,stat}) {
 
     return <section className="emails-section">
-        <div>
-            hi
+        <div className = "emails-section-header">
+            <h1>{stat} Messages</h1>
         </div>
             {
                 emails.map(mail=>
