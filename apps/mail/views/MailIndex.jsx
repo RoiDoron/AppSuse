@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const { Link, useSearchParams,Outlet } = ReactRouterDOM
+const { Link, useSearchParams, Outlet } = ReactRouterDOM
 
 import { EmailCompose } from "../cmps/EmailCompose.jsx"
 import { MailList } from "../cmps/MailList.jsx"
@@ -7,12 +7,16 @@ import { MailSideNav } from "../cmps/MailSideNav.jsx"
 
 import { eventBusService, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { mailService } from "../services/mail.service.js"
+import { MailDetails } from "./MailDetails.jsx"
 
 
 export function MailIndex() {
     const [emails, setEmails] = useState(null)
+    const [mailToShow, setMailToShow] = useState(null)
+    const [showMail, setShowMail] = useState(false)
     const [sendingMail, setSendingMail] = useState(false)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+
 
     useEffect(() => {
         loadEmails()
@@ -37,10 +41,10 @@ export function MailIndex() {
         if (mail.stat === 'inbox') {
             mail.stat = 'trash'
             mailService.save(mail)
-                .then(() =>{
+                .then(() => {
                     loadEmails()
                     showSuccessMsg('Email moved to trash')
-                } )
+                })
                 .catch((err) => {
                     console.log('Had issues removing car', err)
                     showErrorMsg(`Could not remove (${emailId})`)
@@ -67,7 +71,7 @@ export function MailIndex() {
     }
 
     function onSends() {
-        setFilterBy(prevFilterBy => ({ ...prevFilterBy, stat: 'send' }))
+        setFilterBy(prevFilterBy => ({ ...prevFilterBy, stat: 'sent' }))
     }
 
     function onTrash() {
@@ -78,24 +82,26 @@ export function MailIndex() {
     if (!emails) return <div>loading...</div>
     const { stat, desc } = filterBy
     console.log(emails);
-    return <section className="emails-index flex  ">
+    return <section className="emails-index flex ">
         <MailSideNav
+             setShowMail={setShowMail}
             onSendMail={onSendMail}
             onInbox={onInbox}
             onSends={onSends}
             onTrash={onTrash}
-
         />
-        <div>
+        {!showMail &&
             <MailList
+                setMailToShow={setMailToShow}
+                setShowMail={setShowMail}
                 onSetFilter={onSetFilter}
                 filterBy={{ desc }}
                 emails={emails}
                 onRemoveEmail={onRemoveEmail}
             />
-          
-        </div>
-
+        } {showMail &&
+            <MailDetails onRemoveEmail={onRemoveEmail} setShowMail={setShowMail} mailToShow={mailToShow} />
+        }
         {sendingMail &&
             <EmailCompose onSendMail={onSendMail} />
 

@@ -6,6 +6,13 @@ a {
     position: relative;
 }
 
+/* .mail-row-body{
+    overflow: hidden;
+    text-overflow: ellipsis; */
+    /* word-wrap: break-word;
+    overflow-wrap: break-word; */
+/* } */
+
 .mail-row button {
 
     opacity: 0;
@@ -37,4 +44,10 @@ a {
 
 .mail-row button:hover {
     /* font-size: 1.2em; */
+}
+
+@media (max-width: 840px) {
+    .mail-row{
+        flex-direction: column;
+    }
 }

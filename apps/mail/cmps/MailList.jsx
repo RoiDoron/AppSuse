@@ -3,19 +3,19 @@ const { useOutletContext } = ReactRouterDOM
 import { MailRow } from "./MailRow.jsx";
 
 
-export function MailList({ emails, onRemoveEmail, onSetFilter, filterBy }) {
+export function MailList({ emails, onRemoveEmail, onSetFilter, filterBy, setShowMail, setMailToShow }) {
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
     useEffect(() => {
     }, [filterByToEdit])
-    
-    
+
+
     function handleChange(ev) {
         let { value, name: field, type } = ev.target
         if (type === 'number') value = +value
         setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
     }
-    
+
     function onSubmit(ev) {
         ev.preventDefault()
         onSetFilter(filterByToEdit)
@@ -34,17 +34,20 @@ export function MailList({ emails, onRemoveEmail, onSetFilter, filterBy }) {
 
             />
         </form>
-        
+
         <section className="mail-list-container">
 
             {
                 emails.map(mail =>
-                    <MailRow mail={mail}
+                    <MailRow
+                        setMailToShow={setMailToShow}
+                        setShowMail={setShowMail}
+                        mail={mail}
                         onRemoveEmail={onRemoveEmail}
                         key={mail.id}
                     />)
             }
         </section>
-        
+
     </section>
 }

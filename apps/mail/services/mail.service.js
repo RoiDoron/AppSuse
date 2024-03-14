@@ -1,5 +1,6 @@
 import { storageService } from "../../../services/async-storage.service.js"
 import { utilService } from "../../../services/util.service.js"
+import { gEmails } from "./demoData.service.js"
 
 const loggedInUser = {
     email: 'user@appsus.com',
@@ -69,37 +70,8 @@ function _createEmails() {
     let emails = utilService.loadFromStorage(KEY_EMAIL)
     console.log(emails);
     if (!emails || !emails.length) {
-        emails =[]
+        emails =gEmails
 
-        emails.push(_createEmail('Miss you!', 'Would love to catch up sometimes', false, 1551133930594, null, 'momo@momo.com', 'user@appsus.com','inbox'))
-        emails.push(_createEmail('Hi roi',
-            'Do you now how to use React? we are interesting on hiring you. please contact me! yuval HR google',
-            false,
-            1551133930594,
-            null,
-            'yuval_hiring@gmail.com',
-            'user@appsus.com','inbox'))
-        emails.push(_createEmail('Miss you!',
-            'Would love to catch up sometimes',
-            false,
-            1651133930594,
-            null,
-            'momo@momo.com',
-            'user@appsus.com','inbox'))
-        emails.push(_createEmail('Miss you!',
-            'Would love to catch up sometimes',
-            false,
-            1651133930594 + 500000,
-            null,
-            'momo@momo.com',
-            'user@appsus.com','trash'))
-        emails.push(_createEmail('Miss you!',
-            'Would love to catch up sometimes',
-            false,
-            1651133930594 + 500000,
-            null,
-            'momo@momo.com',
-            'user@appsus.com','send'))
             utilService.saveToStorage(KEY_EMAIL,emails)
     }
     return emails
@@ -145,32 +117,3 @@ const gEmail = {
 }
 
 
-
-const gSendEmail = [{
-    id: 'e101',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt: 1551133930594,
-    removedAt: null,
-    from: 'user@appsus.com',
-    to: 'momo@momo.com'
-},{
-    id: 'e101',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt: 1551133930594,
-    removedAt: null,
-    from: 'user@appsus.com',
-    to: 'momo@momo.com'
-},{
-    id: 'e101',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt: 1551133930594,
-    removedAt: null,
-    from: 'user@appsus.com',
-    to: 'momo@momo.com'
-}]

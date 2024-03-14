@@ -27,12 +27,12 @@
   align-items: center;
   width: max-content;
   padding: 0.5em;
-  height: 60px;
+  height: 56px;
   margin-top: 2rem;
   border-radius: 1em;
   background-color: #c2e7ff;
   /* color: #f0eeee; */
-  font-size: 1.5rem;
+  font-size: 0.875rem;
   cursor: pointer;
   margin-left: 5px;
   position: relative;
@@ -44,6 +44,11 @@
 
 }
 
+.mail-side-nav-compose img{
+  width: 1.5em;
+  height: 1.5em;
+  padding-right: 10px;
+}
 .mail-side-nav ul {
   flex-direction: column;
   margin-top: 30px;
@@ -78,6 +83,7 @@
 @media (min-width: 1020px) {
   .mail-side-nav {
     /* width: 20vw; */
+    max-width:182px ;
     transform: translate(0);
     position: static;
     box-shadow: none;
