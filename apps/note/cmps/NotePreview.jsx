@@ -1,5 +1,6 @@
 const { useState } = React
 import { TodoNote } from "./TodoNote.jsx"
+import { PinnedNote } from "./PinnedNote.jsx"
 
 export function NotePreview({ note, onUpdateNote, onRemoveNote }) {
     const [color, setColor] = useState('bisque');
@@ -20,6 +21,7 @@ export function NotePreview({ note, onUpdateNote, onRemoveNote }) {
     }
 
     return <div style={note.style} className="note-preview">
+        <button className="pinned-note">📌</button>
         {note.info.title && <TodoNote handleInputChange={handleInputChange} title={note.info.title} todos={note.info.todos} />}
 
         {note.info.txt && <p contentEditable="true" id='txt' onInput={handleInputChange}>{note.info.txt}</p>}
