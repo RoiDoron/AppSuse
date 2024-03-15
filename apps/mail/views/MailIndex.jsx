@@ -113,6 +113,7 @@ export function MailIndex() {
     return <section className="emails-index flex ">
         <div onClick={toggleMenu} className={`main-screen ${menu}`}></div>
         <MailSideNav
+            setMenu={setMenu}
             toggleMenu={toggleMenu}
             menu={menu}
             readMailCount={readMailCount}
