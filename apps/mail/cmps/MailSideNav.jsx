@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 
-export function MailSideNav({toggleMenu,menu,onInbox,onSendMail,onSends,onTrash, setShowMail,readMailCount}) {
+export function MailSideNav({setMenu,menu,onInbox,onSendMail,onSends,onTrash, setShowMail,readMailCount}) {
 const [classInbox,setClassInbox] = useState('active-side')
 const [classTrash,setClassTrash] = useState('')
 const [classSends,setClassSends] = useState('')
@@ -11,7 +11,7 @@ const [classSends,setClassSends] = useState('')
             setClassInbox('active-side')
             setClassSends('')
             setClassTrash('')
-            toggleMenu()
+            setMenu('')
             setShowMail(false)
 
         }
@@ -21,7 +21,7 @@ const [classSends,setClassSends] = useState('')
             setClassInbox('')
             setClassSends('')
             setClassTrash('active-side')
-            toggleMenu()
+            setMenu('')
             setShowMail(false)
         }
         
@@ -30,7 +30,7 @@ const [classSends,setClassSends] = useState('')
             setClassInbox('')
             setClassSends('active-side')
             setClassTrash('')
-            toggleMenu()
+            setMenu('')
             setShowMail(false)
         }
     return <div className={`mail-side-nav ${menu}`}>
