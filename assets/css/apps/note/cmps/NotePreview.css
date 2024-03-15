@@ -63,5 +63,11 @@
 .input-type{
     height: 100%;
     cursor: pointer;
+    border-radius: 0.5em;
 }
+
+.color-input .items-container {
+    position: absolute;
+    display: flex;
+  }
 

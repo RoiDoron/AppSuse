@@ -1,7 +1,6 @@
  /* note list */
 
  .note-list {
-   /* display: flex; */
    gap: 1em;
    column-count: 3;
    column-gap: 30px
@@ -14,7 +13,7 @@
  .add-note {
    display: inline-flex;
    place-content: center;
-   background: black;
+   background: rgba(0, 0, 0, 0);
  }
 
  .note-li {
@@ -32,3 +31,12 @@
    flex-direction: row;
    place-items: center;
  }
+
+ .search-note{
+  padding: 1em;
+  width: 40vw;
+  border-radius: 15px;
+  cursor: pointer;
+  margin:1em;
+ }
+

@@ -4,8 +4,7 @@ import { ColorInput } from "./ColorInput.jsx"
 
 export function NotePreview({ note, onUpdateNote, onRemoveNote }) {
     const [isPinned, setIsPinned] = useState(note.isPinned)
-    console.log('isPinned', isPinned)
-
+    
     function changePinnedNote(){
         setIsPinned(!isPinned)
         const updatedNote = { ...note, isPinned: isPinned }

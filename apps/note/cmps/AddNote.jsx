@@ -36,7 +36,7 @@ export function AddNote({ loadNotes }) {
     }
 
     useEffect(() => {
-        console.log(cmpInput)
+
     }, [cmpInput])
 
 
@@ -50,7 +50,7 @@ export function AddNote({ loadNotes }) {
             <form className="note-form" onSubmit={onSaveNote}>
                 <DynamicCmp cmpType={cmpInput} handleChange={handleChange} />
             </form>
-            <div>
+            <div className="search-bar">
                 <button className="input-type" onClick={() => onChangeCmp('NoteTxt')}><i class="far fa-sticky-note " aria-hidden="true"></i></button>
                 <button className="input-type" onClick={() => onChangeCmp('NoteImg')}><i class="far fa-images " aria-hidden="true"></i></button>
                 <button className="input-type" onClick={() => onChangeCmp('NoteTodos')}><i class="far fa-list-alt " aria-hidden="true"></i></button>

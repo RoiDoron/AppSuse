@@ -90,11 +90,18 @@ export const noteService = {
     save,
     getEmptyNote,
     _createNote,
+    getDefaultFilter,
 }
 
-function query() {
+function query(filterBy = getDefaultFilter()) {
+    console.log('hey from query')
     return storageService.query(NOTE_KEY)
         .then(notes => {
+            if (filterBy.txt){
+                console.log('hey from query filterbytxt::')
+                const regex = new RegExp(filterBy.txt, 'i')
+                notes = notes.filter(note => regex.test(note.info.txt || note.info.title))
+            }
             return notes
         })
 }
@@ -130,7 +137,6 @@ function _createNotes() {
 }
 
 function _createNote(title, txt, url, src) {
-    // const note = getEmptyNote()
     const note = {}
     note.id = utilService.makeId()
     note.createdAt = Date.now()
@@ -146,6 +152,10 @@ function _createNote(title, txt, url, src) {
         src: src,
     }
     return note
+}
+
+function getDefaultFilter(){
+    return {txt: ''}
 }
 
 

@@ -4,7 +4,7 @@ export function NoteList({ notes, onRemoveNote, onUpdateNote }) {
     const pinnedNotes = notes.filter(note => note.isPinned === true)
     // Filter non-pinned notes
     const nonPinnedNotes = notes.filter(note => note.isPinned !== true)
-
+    if (!notes.length) return <div>No notes to show...</div>
     return (
         <div>
             {/* Section for pinned notes */}

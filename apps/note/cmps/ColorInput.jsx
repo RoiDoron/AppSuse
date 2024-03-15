@@ -2,7 +2,6 @@ export function ColorInput({ note, onUpdateNote }) {
     const colors = ['#B4FF9F', '#F9FFA4', '#FFD59E', '#FFA1A1','#FFE0E0','lightcyan']
 
     function onSetColor(ev) {
-        console.log(ev.target.style.backgroundColor)
         const newColor = ev.target.style.backgroundColor
         const updatedStyle = { ...note.style, backgroundColor: newColor }
         const updatedNote = { ...note, style: updatedStyle }

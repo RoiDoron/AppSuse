@@ -2,19 +2,19 @@ const { useState, useEffect } = React
 
 import { NoteList } from "../cmps/NoteList.jsx"
 import { AddNote } from "../cmps/AddNote.jsx"
-
-
+import { NoteFilter } from "../cmps/NoteFilter.jsx"
 
 import { noteService } from "../services/note.service.js"
 
 export function NoteIndex() {
     const [notes, setNotes] = useState(null)
+    const [filterByMain, setMainFilter] = useState(noteService.getDefaultFilter())
     useEffect(() => {
         loadNotes()
-    }, [])
+    }, [filterByMain])
 
     function loadNotes() {
-        noteService.query()
+        noteService.query(filterByMain)
             .then((notes) => {
                 setNotes(notes)
             })
@@ -45,6 +45,7 @@ export function NoteIndex() {
     if (!notes) return <div>Loading...</div>
     return (
         <section className="note-index">
+            <NoteFilter setMainFilter={setMainFilter} />
             <AddNote loadNotes={loadNotes} />
             <NoteList onRemoveNote={onRemoveNote} onUpdateNote={onUpdateNote} notes={notes} />
         </section>
