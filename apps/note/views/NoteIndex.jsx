@@ -1,7 +1,9 @@
 const { useState, useEffect } = React
-// const { Link } = ReactRouterDOM
+
 import { NoteList } from "../cmps/NoteList.jsx"
 import { AddNote } from "../cmps/AddNote.jsx"
+
+
 
 import { noteService } from "../services/note.service.js"
 
