@@ -13,6 +13,8 @@
     position: absolute;
     bottom: 0.5em;
     right:0.5em;
+    border: none;
+    background-color: #ffffff00;
 }
 
 .note-preview:hover .remove-btn {
@@ -43,6 +45,8 @@
     opacity: 0;
     transition: opacity 0.5s ease;
     cursor: pointer;
+    border: none;
+    background-color: #ffffff00;
 }
 
 .note-preview:hover .pinned-note {
