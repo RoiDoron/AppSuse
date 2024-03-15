@@ -21,7 +21,7 @@ const demoNotes = [
         type: 'NoteImg',
         isPinned: false,
         info: {
-            url: 'http://books.google.com/books/content?id=nBuA0hmspdMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+            url: 'https://media4.giphy.com/media/qvtLuBQ7WVD0ZurSUz/giphy.gif?cid=ecf05e47aafc678dc980417742da1ee5d970c0c9efbe3ca7&rid=giphy.gif&ct=g"',
         },
         style: {
             backgroundColor: '#F9FFA4'
@@ -97,7 +97,7 @@ function query(filterBy = getDefaultFilter()) {
     console.log('hey from query')
     return storageService.query(NOTE_KEY)
         .then(notes => {
-            if (filterBy.txt){
+            if (filterBy.txt) {
                 console.log('hey from query filterbytxt::')
                 const regex = new RegExp(filterBy.txt, 'i')
                 notes = notes.filter(note => regex.test(note.info.txt || note.info.title))
@@ -118,7 +118,9 @@ function save(note) {
     if (note.id) {
         return storageService.put(NOTE_KEY, note)
     } else {
+        console.log('holda amiga')
         note = _createNote(note.title, note.txt, note.url, note.src)
+        console.log(note)
         return storageService.post(NOTE_KEY, note)
     }
 }
@@ -154,8 +156,9 @@ function _createNote(title, txt, url, src) {
     return note
 }
 
-function getDefaultFilter(){
-    return {txt: ''}
+function getDefaultFilter() {
+    return { txt: '' }
 }
+
 
 

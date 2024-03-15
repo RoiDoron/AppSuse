@@ -2,7 +2,7 @@
 
  .note-list {
    gap: 1em;
-   column-count: 3;
+   column-count: 1;
    column-gap: 30px
  }
 
@@ -13,7 +13,6 @@
  .add-note {
    display: inline-flex;
    place-content: center;
-   background: rgba(0, 0, 0, 0);
  }
 
  .note-li {

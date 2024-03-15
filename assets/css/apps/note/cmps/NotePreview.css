@@ -1,31 +1,44 @@
-.note-preview{
+.note-preview {
     background-color: bisque;
     padding: 1em;
     position: relative;
     border-radius: 1em;
-    break-inside:avoid;
-    line-break:anywhere;
+    break-inside: avoid;
+    line-break: anywhere;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.note-preview .img,
+.note-preview video {
+    max-width: 100%;
+    height: auto;
+    top:0;
+    left:0;
 }
 
 .remove-btn {
-    opacity: 0; 
-    transition: opacity 0.5s ease; 
+    opacity: 0;
+    transition: opacity 0.5s ease;
     position: absolute;
     bottom: 0.5em;
-    right:0.5em;
+    right: 0.5em;
     border: none;
     background-color: #ffffff00;
+    cursor: pointer;
 }
 
 .note-preview:hover .remove-btn {
-    opacity: 1; 
+    opacity: 1;
 }
-.color-picking{
-    opacity: 0; 
-    transition: opacity 0.5s ease; 
+
+.color-picking {
+    opacity: 0;
+    transition: opacity 0.5s ease;
     position: absolute;
     bottom: 0.5em;
-    right:3em;
+    right: 3em;
+    cursor: pointer;
 }
 
 .note-preview:hover .color-picking {
@@ -40,8 +53,8 @@
 
 .note-preview .pinned-note {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 15px;
+    left: 10px;
     opacity: 0;
     transition: opacity 0.5s ease;
     cursor: pointer;
@@ -50,17 +63,17 @@
 }
 
 .note-preview:hover .pinned-note {
-    opacity: 1; 
+    opacity: 1;
 }
 
-.input-add-note{
+.input-add-note {
     padding: 1em;
     width: 20vw;
     border-radius: 15px;
     cursor: pointer;
 }
 
-.input-type{
+.input-type {
     height: 100%;
     cursor: pointer;
     border-radius: 0.5em;
@@ -68,6 +81,35 @@
 
 .color-input .items-container {
     position: absolute;
+    border-radius: 50%;
     display: flex;
-  }
+    bottom: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
 
+.note-preview:hover .items-container {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.duplicate-btn{
+    border: none;
+    background-color: #ffffff00;
+    position: absolute;
+    bottom: 0.5em;
+    right: 2.5em;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.note-preview:hover .duplicate-btn {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.item {
+    border-radius: 50%;
+    padding: 0.3em
+}

@@ -47,7 +47,7 @@ export function NoteIndex() {
         <section className="note-index">
             <NoteFilter setMainFilter={setMainFilter} />
             <AddNote loadNotes={loadNotes} />
-            <NoteList onRemoveNote={onRemoveNote} onUpdateNote={onUpdateNote} notes={notes} />
+            <NoteList loadNotes={loadNotes} onRemoveNote={onRemoveNote} onUpdateNote={onUpdateNote} notes={notes} />
         </section>
 
     )

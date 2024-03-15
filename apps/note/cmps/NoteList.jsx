@@ -1,6 +1,6 @@
 import { NotePreview } from "./NotePreview.jsx"
 
-export function NoteList({ notes, onRemoveNote, onUpdateNote }) {
+export function NoteList({ notes, onRemoveNote, onUpdateNote, loadNotes }) {
     const pinnedNotes = notes.filter(note => note.isPinned === true)
     // Filter non-pinned notes
     const nonPinnedNotes = notes.filter(note => note.isPinned !== true)
@@ -36,6 +36,7 @@ export function NoteList({ notes, onRemoveNote, onUpdateNote }) {
                                     onRemoveNote={onRemoveNote}
                                     onUpdateNote={onUpdateNote}
                                     note={note}
+                                    loadNotes={loadNotes}
                                 ></NotePreview>
                             </li>
                         ))}

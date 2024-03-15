@@ -1,4 +1,8 @@
  /* note index */
+ ::-webkit-scrollbar {
+   display: none;
+}
+
  .note-index {
     font-family: 'PT Sans', sans-serif;
  }

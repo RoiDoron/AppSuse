@@ -51,10 +51,10 @@ export function AddNote({ loadNotes }) {
                 <DynamicCmp cmpType={cmpInput} handleChange={handleChange} />
             </form>
             <div className="search-bar">
-                <button className="input-type" onClick={() => onChangeCmp('NoteTxt')}><i class="far fa-sticky-note " aria-hidden="true"></i></button>
-                <button className="input-type" onClick={() => onChangeCmp('NoteImg')}><i class="far fa-images " aria-hidden="true"></i></button>
-                <button className="input-type" onClick={() => onChangeCmp('NoteTodos')}><i class="far fa-list-alt " aria-hidden="true"></i></button>
-                <button className="input-type" onClick={() => onChangeCmp('NoteVideo')}><i class="fab fa-youtube active " aria-hidden="true"></i></button>
+                <button className="input-type" onClick={() => onChangeCmp('NoteTxt')}><i className="far fa-sticky-note " aria-hidden="true"></i></button>
+                <button className="input-type" onClick={() => onChangeCmp('NoteImg')}><i className="far fa-images " aria-hidden="true"></i></button>
+                <button className="input-type" onClick={() => onChangeCmp('NoteTodos')}><i className="far fa-list-alt " aria-hidden="true"></i></button>
+                <button className="input-type" onClick={() => onChangeCmp('NoteVideo')}><i className="fab fa-youtube active " aria-hidden="true"></i></button>
             </div>
 
         </section>

@@ -1,0 +1,16 @@
+@media (min-width : 600px) {
+    .note-list {
+        column-count: 2;
+    }
+}
+
+@media (min-width : 1080px) {
+    .note-list {
+        column-count: 3;
+    }
+
+    .note-index {
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+}
