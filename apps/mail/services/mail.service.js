@@ -1,5 +1,6 @@
 import { storageService } from "../../../services/async-storage.service.js"
 import { utilService } from "../../../services/util.service.js"
+import { gEmails } from "./demoData.service.js"
 
 const loggedInUser = {
     email: 'user@appsus.com',
@@ -17,31 +18,52 @@ export const mailService = {
     save,
     getDefaultFilter,
     remove,
-    sendingEmail
+    sendingEmail,
+    unreadMail
 }
 
 
 function query(filterBy) {
     console.log(filterBy);
-    
+
+    return storageService.query(KEY_EMAIL)
+        .then((emails) => {
+            if (filterBy.stat) {
+                const regex = new RegExp(filterBy.stat, 'i')
+                emails = emails.filter(mail => regex.test(mail.stat))
+            }
+            if (filterBy.desc) {
+                const regex = new RegExp(filterBy.desc, 'i')
+                emails = emails.filter((mail) =>
+                    regex.test(mail.from) ||
+                    regex.test(mail.to) ||
+                    regex.test(mail.subject) ||
+                    regex.test(mail.body)
+
+                )
+            }
+            if (filterBy.isRead === 'read') {
+                emails = emails.filter(mail => !mail.isRead)
+                console.log('filter 1');
+
+            }
+            if (filterBy.isRead ==='unread') {
+                emails = emails.filter(mail => mail.isRead)
+                console.log('filter 2');
+            }
+            return emails
+        })
+}
+
+function unreadMail(filterBy){
     return storageService.query(KEY_EMAIL)
     .then((emails) => {
         if (filterBy.stat) {
             const regex = new RegExp(filterBy.stat, 'i')
             emails = emails.filter(mail => regex.test(mail.stat))
-        }
-        if (filterBy.desc) {
-            const regex = new RegExp(filterBy.desc, 'i')
-            emails = emails.filter((mail) => 
-                regex.test(mail.from)||
-                regex.test(mail.to)||
-                regex.test(mail.subject)||
-                regex.test(mail.body)
-            
-                )
-        }
-        return emails
-    })
+            return emails
+        }})
+
 }
 
 function getById(emailId) {
@@ -61,60 +83,29 @@ function save(email) {
 }
 
 function getDefaultFilter() {
-    return { stat:'inbox',desc:''}
+    return { stat: 'inbox', desc: '', isRead: '' }
 }
 
 function _createEmails() {
-    
     let emails = utilService.loadFromStorage(KEY_EMAIL)
-    console.log(emails);
     if (!emails || !emails.length) {
-        emails =[]
+        emails = gEmails
 
-        emails.push(_createEmail('Miss you!', 'Would love to catch up sometimes', false, 1551133930594, null, 'momo@momo.com', 'user@appsus.com','inbox'))
-        emails.push(_createEmail('Hi roi',
-            'Do you now how to use React? we are interesting on hiring you. please contact me! yuval HR google',
-            false,
-            1551133930594,
-            null,
-            'yuval_hiring@gmail.com',
-            'user@appsus.com','inbox'))
-        emails.push(_createEmail('Miss you!',
-            'Would love to catch up sometimes',
-            false,
-            1651133930594,
-            null,
-            'momo@momo.com',
-            'user@appsus.com','inbox'))
-        emails.push(_createEmail('Miss you!',
-            'Would love to catch up sometimes',
-            false,
-            1651133930594 + 500000,
-            null,
-            'momo@momo.com',
-            'user@appsus.com','trash'))
-        emails.push(_createEmail('Miss you!',
-            'Would love to catch up sometimes',
-            false,
-            1651133930594 + 500000,
-            null,
-            'momo@momo.com',
-            'user@appsus.com','send'))
-            utilService.saveToStorage(KEY_EMAIL,emails)
+        utilService.saveToStorage(KEY_EMAIL, emails)
     }
     return emails
 }
 
-function sendingEmail(email){
-const mail = _createEmail()
-mail.to = email.to
-mail.body = email.body
-mail.subject = email.subject
+function sendingEmail(email) {
+    const mail = _createEmail()
+    mail.to = email.to
+    mail.body = email.body
+    mail.subject = email.subject
 
-storageService.post(KEY_EMAIL, mail)
+    storageService.post(KEY_EMAIL, mail)
 }
 
-function _createEmail(subject, body, isRead = false, sentAt = Date.now(), removedAt, from = loggedInUser.email, to,stat='send') {
+function _createEmail(subject, body, isRead = false, sentAt = Date.now(), removedAt, from = loggedInUser.email, to, stat = 'sent') {
     return {
         id: utilService.makeId(),
         subject,
@@ -145,32 +136,3 @@ const gEmail = {
 }
 
 
-
-const gSendEmail = [{
-    id: 'e101',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt: 1551133930594,
-    removedAt: null,
-    from: 'user@appsus.com',
-    to: 'momo@momo.com'
-},{
-    id: 'e101',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt: 1551133930594,
-    removedAt: null,
-    from: 'user@appsus.com',
-    to: 'momo@momo.com'
-},{
-    id: 'e101',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt: 1551133930594,
-    removedAt: null,
-    from: 'user@appsus.com',
-    to: 'momo@momo.com'
-}]

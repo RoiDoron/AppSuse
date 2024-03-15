@@ -12,11 +12,12 @@
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   gap: 2rem;
   transform: translate(-100%);
+  z-index: 10;
 
   transition: transform 0.3s;
 }
 
-.mail-side-nav.active-sidenav {
+.mail-side-nav.menu-open {
   transform: translate(0);
   z-index: 5;
 }
@@ -27,12 +28,12 @@
   align-items: center;
   width: max-content;
   padding: 0.5em;
-  height: 60px;
+  height: 56px;
   margin-top: 2rem;
   border-radius: 1em;
   background-color: #c2e7ff;
   /* color: #f0eeee; */
-  font-size: 1.5rem;
+  font-size: 0.875rem;
   cursor: pointer;
   margin-left: 5px;
   position: relative;
@@ -44,6 +45,11 @@
 
 }
 
+.mail-side-nav-compose img{
+  width: 1.5em;
+  height: 1.5em;
+  padding-right: 10px;
+}
 .mail-side-nav ul {
   flex-direction: column;
   margin-top: 30px;
@@ -75,9 +81,26 @@
   /* background-color: #fce8e6; */
 }
 
+.main-screen {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  pointer-events: none;
+  opacity: 0;
+z-index: 1;
+  transition: opacity 0.6s;
+}
+
+.main-screen.menu-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 @media (min-width: 1020px) {
   .mail-side-nav {
     /* width: 20vw; */
+    max-width:182px ;
     transform: translate(0);
     position: static;
     box-shadow: none;

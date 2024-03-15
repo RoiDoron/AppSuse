@@ -1,0 +1,200 @@
+export const gEmails = [
+    {
+        id: "e101",
+        subject: "Miss you!",
+        body: "Would love to catch up sometimes",
+        isRead: false,
+        sentAt: 1551133930594,
+        removedAt: null,
+        from: "user@appsus.com",
+        to: "momo@momo.com",
+        stat: "inbox"
+    },
+    {
+        id: "e102",
+        subject: "Meeting Reminder",
+        body: "Don't forget our meeting tomorrow at 10 AM.",
+        isRead: true,
+        sentAt: 1551143930594,
+        removedAt: null,
+        from: "office@example.com",
+        to: "user@appsus.com",
+        stat: "inbox"
+    },
+    {
+        id: "e103",
+        subject: "Weekly Newsletter",
+        body: "Here's your weekly newsletter with updates and articles.",
+        isRead: false,
+        sentAt: 1551153930594,
+        removedAt: null,
+        from: "newsletter@company.com",
+        to: "user@appsus.com",
+        stat: "inbox"
+    },
+    {
+        id: "e104",
+        subject: "Invitation to the Conference",
+        body: "You're invited to attend our annual conference. RSVP as soon as possible.",
+        isRead: false,
+        sentAt: 1551163930594,
+        removedAt: null,
+        from: "events@conference.com",
+        to: "user@appsus.com",
+        stat: "inbox"
+    },
+    {
+        id: "e105",
+        subject: "Urgent: Payment Reminder",
+        body: "Please remember to pay your outstanding invoice by the end of the week.",
+        isRead: false,
+        sentAt: 1551173930594,
+        removedAt: null,
+        from: "billing@company.com",
+        to: "user@appsus.com",
+        stat: "sent"
+    },
+    {
+        id: "e106",
+        subject: "Happy Birthday!",
+        body: "Wishing you a fantastic birthday filled with joy and laughter!",
+        isRead: true,
+        sentAt: 1551183930594,
+        removedAt: null,
+        from: "friend@example.com",
+        to: "user@appsus.com",
+        stat: "sent"
+    },
+    {
+        id: "e107",
+        subject: "Job Opportunity",
+        body: "Exciting job opportunity available at our company. Apply now!",
+        isRead: false,
+        sentAt: 1551193930594,
+        removedAt: null,
+        from: "careers@company.com",
+        to: "user@appsus.com",
+        stat: "sent"
+    },
+    {
+        id: "e108",
+        subject: "Weekly Report",
+        body: "Here's your weekly report detailing project progress and tasks.",
+        isRead: true,
+        sentAt: 1551203930594,
+        removedAt: null,
+        from: "reports@company.com",
+        to: "user@appsus.com",
+        stat: "trash"
+    },
+    {
+        id: "e109",
+        subject: "Request for Information",
+        body: "Could you provide more information regarding your recent proposal?",
+        isRead: false,
+        sentAt: 1551213930594,
+        removedAt: null,
+        from: "client@company.com",
+        to: "user@appsus.com",
+        stat: "trash"
+    },
+    {
+        id: "e110",
+        subject: "New Product Launch",
+        body: "Introducing our latest product. Check it out!",
+        isRead: false,
+        sentAt: 1551223930594,
+        removedAt: null,
+        from: "marketing@company.com",
+        to: "user@appsus.com",
+        stat: "trash"
+    },
+    {
+        id: "e111",
+        subject: "Vacation Package Deals",
+        body: "Discover amazing vacation packages at unbeatable prices!",
+        isRead: false,
+        sentAt: 1551233930594,
+        removedAt: null,
+        from: "travel@company.com",
+        to: "user@appsus.com",
+        stat: "inbox"
+    },
+    {
+        id: "e112",
+        subject: "Important Announcement",
+        body: "Please be advised of the upcoming changes in our company policies.",
+        isRead: false,
+        sentAt: 1551243930594,
+        removedAt: null,
+        from: "management@company.com",
+        to: "user@appsus.com",
+        stat: "inbox"
+    },
+    {
+        id: "e113",
+        subject: "Tech Update",
+        body: "Stay informed with the latest tech news and updates.",
+        isRead: false,
+        sentAt: 1551253930594,
+        removedAt: null,
+        from: "technews@company.com",
+        to: "user@appsus.com",
+        stat: "sent"
+    },
+    {
+        id: "e114",
+        subject: "Volunteer Opportunity",
+        body: "Join us in making a difference in the community. Volunteer today!",
+        isRead: false,
+        sentAt: 1551263930594,
+        removedAt: null,
+        from: "volunteer@organization.com",
+        to: "user@appsus.com",
+        stat: "trash"
+    },
+    {
+        id: "e115",
+        subject: "Discount Coupon Inside",
+        body: "Exclusive discount coupon enclosed. Don't miss out!",
+        isRead: false,
+        sentAt: 1551273930594,
+        removedAt: null,
+        from: "marketing@company.com",
+        to: "user@appsus.com",
+        stat: "inbox"
+    },
+    {
+        id: "e116",
+        subject: "Your Opinion Matters",
+        body: "Take our quick survey and share your feedback with us.",
+        isRead: true,
+        sentAt: 1551283930594,
+        removedAt: null,
+        from: "feedback@company.com",
+        to: "user@appsus.com",
+        stat: "inbox"
+    },
+    {
+        id: "e117",
+        subject: "Congratulations!",
+        body: "Congratulations on your recent achievement!",
+        isRead: false,
+        sentAt: 1551293930594,
+        removedAt: null,
+        from: "celebrations@company.com",
+        to: "user@appsus.com",
+        stat: "inbox"
+    },
+    {
+        id: "e118",
+        subject: "Reminder: Project Deadline",
+        body: "Just a friendly reminder that the project deadline is approaching.",
+        isRead: false,
+        sentAt: 1551303930594,
+        removedAt: null,
+        from: "manager@company.com",
+        to: "user@appsus.com",
+        stat: "sent"
+    }
+]

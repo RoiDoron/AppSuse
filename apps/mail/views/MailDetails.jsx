@@ -1,40 +1,17 @@
-import { mailService } from "../services/mail.service.js"
 
-const { useState, useEffect } = React
-const { useParams, useNavigate } = ReactRouter
 const { Link } = ReactRouterDOM
 
 
-export function MailDetails() {
-    const [isLoading, setIsLoading] = useState(true)
-    const [mail, setMail] = useState(null)
-    const {mailId} = useParams()
-    const navigate = useNavigate()
-
-console.log(mailId);
-
-    useEffect(() => {
-        loadMail()
-    }, [mailId])
-
-    function loadMail() {
-        setIsLoading(true)
-        mailService.getById(mailId)
-            .then(mail => setMail(mail))
-            .catch(err => {
-                console.log('Had issues loading mail', err)
-                navigate('/mail')
-            })
-            .finally(() => {
-                setIsLoading(false)
-            })
+export function MailDetails({ mailToShow, setShowMail, onRemoveEmail }) {
+    const mail = mailToShow
+    function onRemove(mail){
+        setShowMail(false)
+        onRemoveEmail(mail)
     }
 
-    if (isLoading) return <div>Loading details..</div>
-   
-
     return <section className="mail-details">
-        <Link to="/mail"><button>Go back</button></Link>
+        <button className="mail-details-btn fa-solid fa-arrow-left" onClick={() => setShowMail(false)}></button>
+        <button className="mail-delete-btn fa-regular fa-trash-can" onClick={() => onRemove(mail)}></button>
         <div className="mail-details-content">
             <div className="content-header">
                 <h1>sent from:{mail.from}</h1>

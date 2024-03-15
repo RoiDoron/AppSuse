@@ -1,0 +1,40 @@
+.mail-details {
+    position: relative;
+    margin-top: 1em;
+    margin-left: 10px;
+    width: 95vw;
+    padding: 40px 10px 40px 10px;
+    background-color: white;
+    border-radius: 1.5em;
+
+}
+
+.mail-delete-btn,
+.mail-details-btn {
+    position: absolute;
+    top: 0;
+    border-radius: 100%;
+    height: 2.6em;
+    width: 2.6em;
+    font-size: 1.1em;
+    border: none;
+    background-color: rgba(250, 235, 215, 0);
+    cursor: pointer;
+}
+
+
+.mail-details button:hover{
+    background-color: rgba(32, 33, 36, 0.059);
+
+}
+
+@media (min-width: 1020px) {
+    .mail-details {
+        /* width: 20vw; */
+        width: 75vw;
+    }
+}
+
+.mail-delete-btn {
+    left: 3em;
+}

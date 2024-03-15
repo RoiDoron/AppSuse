@@ -32,6 +32,8 @@
 
 
  .filter-input {
+    /* display: inline; */
+    margin-left: 3em;
      position: relative;
      background-color: #eaf1fb;
      border: none;
@@ -66,9 +68,9 @@
      padding: 0px;
      margin: 0px;
      height: auto;
-     width: 100%;
+     width: 80%;
      position: absolute;
-     z-index: 6;
+     
      box-sizing: border-box;
      left: 3em;
      top: 0.9em;
@@ -79,9 +81,34 @@
      outline: none;
  }
 
+ .select-read{
+    position: absolute;
+    left: 87%;
+    top: 1em;
+    border: none;
+    background-color: rgba(240, 248, 255, 0);
+    width: 1.5em;
+ }
+
+ .mail-hamburger{
+    font-size: 2em;
+    position: absolute;
+    top: 2.6em;
+    left: 20px;
+ }
+
+
  @media (min-width: 1020px) {
     .mail-list-container {
       /* width: 20vw; */
       width: 75vw;
     }
+
+    .filter-input{
+        margin: 0;
+    }
+    .mail-hamburger.fas{
+        display: none;
+    }
+
   }
