@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 
-export function MailSideNav({onInbox,onSendMail,onSends,onTrash, setShowMail,readMailCount}) {
+export function MailSideNav({toggleMenu,menu,onInbox,onSendMail,onSends,onTrash, setShowMail,readMailCount}) {
 const [classInbox,setClassInbox] = useState('active-side')
 const [classTrash,setClassTrash] = useState('')
 const [classSends,setClassSends] = useState('')
@@ -11,7 +11,9 @@ const [classSends,setClassSends] = useState('')
             setClassInbox('active-side')
             setClassSends('')
             setClassTrash('')
+            toggleMenu()
             setShowMail(false)
+
         }
         
         function onClickTrash() {
@@ -19,6 +21,7 @@ const [classSends,setClassSends] = useState('')
             setClassInbox('')
             setClassSends('')
             setClassTrash('active-side')
+            toggleMenu()
             setShowMail(false)
         }
         
@@ -27,12 +30,13 @@ const [classSends,setClassSends] = useState('')
             setClassInbox('')
             setClassSends('active-side')
             setClassTrash('')
+            toggleMenu()
             setShowMail(false)
         }
-    return <div className="mail-side-nav">
+    return <div className={`mail-side-nav ${menu}`}>
 
 
-        <div className="mail-side-nav-compose" onClick={() => onSendMail()}><img src="https://www.gstatic.com/images/icons/material/system_gm/2x/create_black_24dp.png" />Compose</div>
+        <div className={`mail-side-nav-compose`} onClick={() => onSendMail()}><img src="https://www.gstatic.com/images/icons/material/system_gm/2x/create_black_24dp.png" />Compose</div>
         <ul className="clean-list flex">
         <li className={`side-nav ${classInbox}`} onClick={onClickInbox} ><i className="side-nav-icon fas fa-inbox"></i> Inbox   {readMailCount}</li>
         <li className={`side-nav ${classSends}`} onClick={onClickSends} > <i className="side-nav-icon fas fa-paper-plane"></i> Sent</li>

@@ -17,7 +17,7 @@ export function MailIndex() {
     const [showMail, setShowMail] = useState(false)
     const [sendingMail, setSendingMail] = useState(false)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
-
+    const [menu, setMenu] = useState('')
 
     useEffect(() => {
         loadEmails()
@@ -25,6 +25,8 @@ export function MailIndex() {
     }, [filterBy])
 
     function loadEmails() {
+
+        console.log(filterBy);
         mailService.query(filterBy)
             .then((emails) => {
                 setEmails(emails)
@@ -36,6 +38,7 @@ export function MailIndex() {
         console.log('fieldsToUpdate', fieldsToUpdate)
 
         setFilterBy(prevFilter => ({ ...prevFilter, ...fieldsToUpdate }))
+        console.log(filterBy);
     }
 
     function onRemoveEmail(mail) {
@@ -65,6 +68,7 @@ export function MailIndex() {
 
     function onSendMail() {
         setSendingMail(!sendingMail)
+        setMenu('')
 
     }
 
@@ -84,23 +88,33 @@ export function MailIndex() {
         let counter = 0
         console.group('hi')
 
-        mailService.query({ stat: 'inbox', desc: '' })
-            .then(mails =>{
+        mailService.unreadMail({ stat: 'inbox' })
+            .then(mails => {
 
                 mails.forEach(email => {
                     if (email.stat === 'inbox') {
                         email.isRead ? '' : counter++
                     }
                 })
+                if (counter === 0) counter = ''
                 setReadMailsCount(counter)
             })
     }
 
+    function toggleMenu() {
+        console.log('hi');
+        setMenu(!menu ? 'menu-open' : '')
+        console.log(menu);
+
+    }
 
     if (!emails) return <div>loading...</div>
-    const { stat, desc } = filterBy
+    const { stat, desc, isRead } = filterBy
     return <section className="emails-index flex ">
+        <div onClick={toggleMenu} className={`main-screen ${menu}`}></div>
         <MailSideNav
+            toggleMenu={toggleMenu}
+            menu={menu}
             readMailCount={readMailCount}
             setShowMail={setShowMail}
             onSendMail={onSendMail}
@@ -110,11 +124,13 @@ export function MailIndex() {
         />
         {!showMail &&
             <MailList
-            unreadMailCount={unreadMailCount}
+
+                toggleMenu={toggleMenu}
+                unreadMailCount={unreadMailCount}
                 setMailToShow={setMailToShow}
                 setShowMail={setShowMail}
                 onSetFilter={onSetFilter}
-                filterBy={{ desc }}
+                filterBy={{ desc, isRead }}
                 emails={emails}
                 onRemoveEmail={onRemoveEmail}
             />

@@ -18,29 +18,52 @@ export const mailService = {
     save,
     getDefaultFilter,
     remove,
-    sendingEmail
+    sendingEmail,
+    unreadMail
 }
 
 
 function query(filterBy) {
+    console.log(filterBy);
+
+    return storageService.query(KEY_EMAIL)
+        .then((emails) => {
+            if (filterBy.stat) {
+                const regex = new RegExp(filterBy.stat, 'i')
+                emails = emails.filter(mail => regex.test(mail.stat))
+            }
+            if (filterBy.desc) {
+                const regex = new RegExp(filterBy.desc, 'i')
+                emails = emails.filter((mail) =>
+                    regex.test(mail.from) ||
+                    regex.test(mail.to) ||
+                    regex.test(mail.subject) ||
+                    regex.test(mail.body)
+
+                )
+            }
+            if (filterBy.isRead === 'read') {
+                emails = emails.filter(mail => !mail.isRead)
+                console.log('filter 1');
+
+            }
+            if (filterBy.isRead ==='unread') {
+                emails = emails.filter(mail => mail.isRead)
+                console.log('filter 2');
+            }
+            return emails
+        })
+}
+
+function unreadMail(filterBy){
     return storageService.query(KEY_EMAIL)
     .then((emails) => {
         if (filterBy.stat) {
             const regex = new RegExp(filterBy.stat, 'i')
             emails = emails.filter(mail => regex.test(mail.stat))
-        }
-        if (filterBy.desc) {
-            const regex = new RegExp(filterBy.desc, 'i')
-            emails = emails.filter((mail) => 
-                regex.test(mail.from)||
-                regex.test(mail.to)||
-                regex.test(mail.subject)||
-                regex.test(mail.body)
-            
-                )
-        }
-        return emails 
-    })
+            return emails
+        }})
+
 }
 
 function getById(emailId) {
@@ -60,29 +83,29 @@ function save(email) {
 }
 
 function getDefaultFilter() {
-    return { stat:'inbox',desc:''}
+    return { stat: 'inbox', desc: '', isRead: '' }
 }
 
 function _createEmails() {
     let emails = utilService.loadFromStorage(KEY_EMAIL)
     if (!emails || !emails.length) {
-        emails =gEmails
+        emails = gEmails
 
-            utilService.saveToStorage(KEY_EMAIL,emails)
+        utilService.saveToStorage(KEY_EMAIL, emails)
     }
     return emails
 }
 
-function sendingEmail(email){
-const mail = _createEmail()
-mail.to = email.to
-mail.body = email.body
-mail.subject = email.subject
+function sendingEmail(email) {
+    const mail = _createEmail()
+    mail.to = email.to
+    mail.body = email.body
+    mail.subject = email.subject
 
-storageService.post(KEY_EMAIL, mail)
+    storageService.post(KEY_EMAIL, mail)
 }
 
-function _createEmail(subject, body, isRead = false, sentAt = Date.now(), removedAt, from = loggedInUser.email, to,stat='sent') {
+function _createEmail(subject, body, isRead = false, sentAt = Date.now(), removedAt, from = loggedInUser.email, to, stat = 'sent') {
     return {
         id: utilService.makeId(),
         subject,
