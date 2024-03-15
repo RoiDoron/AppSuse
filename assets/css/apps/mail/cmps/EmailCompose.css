@@ -15,8 +15,8 @@
 .compose-header {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    background-color: #404040;
-    color: white;
+    background-color: #eaf1fb;
+   
   }
   .compose-header h4 {
     font-weight: normal;
@@ -24,10 +24,9 @@
     margin: 0;
   }
   .compose-header button {
-    background-color: #404040;
+    background-color: #eaf1fb;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    color: white;
     padding: 10px;
     border: none;
   }
@@ -47,6 +46,7 @@
     outline: none;
     border: none;
     border-bottom: 1px solid #ccc;
+    /* height: ; */
   }
   .compose-form textarea {
     padding: 10px;
@@ -72,6 +72,14 @@
     box-shadow: 0 1px 2px 0 rgb(26 115 232 / 45%), 0 1px 3px 1px rgb(26 115 232 / 30%);
   }
   
+  .body-input-container{
+  }
+  
+  .body-input{
+    height: 250px;
+    border: none;
+  }
+
 
 @media (min-width: 335px) {
     .mail-compose {

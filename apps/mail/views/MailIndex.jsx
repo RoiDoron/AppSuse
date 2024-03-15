@@ -12,6 +12,7 @@ import { MailDetails } from "./MailDetails.jsx"
 
 export function MailIndex() {
     const [emails, setEmails] = useState(null)
+    const [readMailCount, setReadMailsCount] = useState(null)
     const [mailToShow, setMailToShow] = useState(null)
     const [showMail, setShowMail] = useState(false)
     const [sendingMail, setSendingMail] = useState(false)
@@ -20,13 +21,14 @@ export function MailIndex() {
 
     useEffect(() => {
         loadEmails()
+        unreadMailCount()
     }, [filterBy])
 
     function loadEmails() {
         mailService.query(filterBy)
             .then((emails) => {
                 setEmails(emails)
-                console.log(filterBy);
+
             })
     }
 
@@ -63,7 +65,7 @@ export function MailIndex() {
 
     function onSendMail() {
         setSendingMail(!sendingMail)
-        console.log(sendingMail);
+
     }
 
     function onInbox() {
@@ -78,13 +80,29 @@ export function MailIndex() {
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, stat: 'trash' }))
     }
 
+    function unreadMailCount() {
+        let counter = 0
+        console.group('hi')
+
+        mailService.query({ stat: 'inbox', desc: '' })
+            .then(mails =>{
+
+                mails.forEach(email => {
+                    if (email.stat === 'inbox') {
+                        email.isRead ? '' : counter++
+                    }
+                })
+                setReadMailsCount(counter)
+            })
+    }
+
 
     if (!emails) return <div>loading...</div>
     const { stat, desc } = filterBy
-    console.log(emails);
     return <section className="emails-index flex ">
         <MailSideNav
-             setShowMail={setShowMail}
+            readMailCount={readMailCount}
+            setShowMail={setShowMail}
             onSendMail={onSendMail}
             onInbox={onInbox}
             onSends={onSends}
@@ -92,6 +110,7 @@ export function MailIndex() {
         />
         {!showMail &&
             <MailList
+            unreadMailCount={unreadMailCount}
                 setMailToShow={setMailToShow}
                 setShowMail={setShowMail}
                 onSetFilter={onSetFilter}

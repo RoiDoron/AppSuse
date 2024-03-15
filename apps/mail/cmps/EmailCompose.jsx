@@ -43,7 +43,7 @@ export function EmailCompose({ onSendMail }) {
 
     return <section className="mail-compose">
         <div className="compose-header flex space-between">
-            <h2>New Massage</h2>
+            <h4>New Massage</h4>
             <button onClick={() => onSendMail()}>X</button>
         </div>
         <form onSubmit={send} className="compose-form">
@@ -61,7 +61,8 @@ export function EmailCompose({ onSendMail }) {
                 name="subject"
                 onChange={handleChange}
             />
-            <input
+            <textarea
+                className="body-input"
                 type="text"
                 name="body"
                 onChange={handleChange}

@@ -3,7 +3,7 @@ const { useOutletContext } = ReactRouterDOM
 import { MailRow } from "./MailRow.jsx";
 
 
-export function MailList({ emails, onRemoveEmail, onSetFilter, filterBy, setShowMail, setMailToShow }) {
+export function MailList({ emails, onRemoveEmail, onSetFilter, filterBy, setShowMail, setMailToShow,unreadMailCount }) {
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
     useEffect(() => {
@@ -40,6 +40,7 @@ export function MailList({ emails, onRemoveEmail, onSetFilter, filterBy, setShow
             {
                 emails.map(mail =>
                     <MailRow
+                    unreadMailCount={unreadMailCount}
                         setMailToShow={setMailToShow}
                         setShowMail={setShowMail}
                         mail={mail}

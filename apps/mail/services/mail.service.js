@@ -23,8 +23,6 @@ export const mailService = {
 
 
 function query(filterBy) {
-    console.log(filterBy);
-    
     return storageService.query(KEY_EMAIL)
     .then((emails) => {
         if (filterBy.stat) {
@@ -41,7 +39,7 @@ function query(filterBy) {
             
                 )
         }
-        return emails
+        return emails 
     })
 }
 
@@ -66,9 +64,7 @@ function getDefaultFilter() {
 }
 
 function _createEmails() {
-    
     let emails = utilService.loadFromStorage(KEY_EMAIL)
-    console.log(emails);
     if (!emails || !emails.length) {
         emails =gEmails
 
@@ -86,7 +82,7 @@ mail.subject = email.subject
 storageService.post(KEY_EMAIL, mail)
 }
 
-function _createEmail(subject, body, isRead = false, sentAt = Date.now(), removedAt, from = loggedInUser.email, to,stat='send') {
+function _createEmail(subject, body, isRead = false, sentAt = Date.now(), removedAt, from = loggedInUser.email, to,stat='sent') {
     return {
         id: utilService.makeId(),
         subject,
