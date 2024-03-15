@@ -28,6 +28,7 @@
 
 .note-preview:hover .color-picking {
     opacity: 1;
+    cursor: pointer;
 }
 
 .img-preview {
@@ -41,6 +42,7 @@
     left: 0;
     opacity: 0;
     transition: opacity 0.5s ease;
+    cursor: pointer;
 }
 
 .note-preview:hover .pinned-note {
@@ -51,9 +53,11 @@
     padding: 1em;
     width: 20vw;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .input-type{
     height: 100%;
+    cursor: pointer;
 }
 

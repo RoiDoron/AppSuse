@@ -1,17 +1,17 @@
  /* note list */
 
- .note-list{
-    /* display: flex; */
-    gap: 1em;
-    column-count: 3;
-    column-gap: 30px
+ .note-list {
+   /* display: flex; */
+   gap: 1em;
+   column-count: 3;
+   column-gap: 30px
  }
 
- .note-index{
+ .note-index {
    text-align: center;
  }
 
- .add-note{
+ .add-note {
    display: inline-flex;
    place-content: center;
    background: black;
@@ -21,3 +21,14 @@
    margin-bottom: 1em;
  }
 
+ .item {
+   background-color: "black";
+   padding: 2px;
+   height: 0.5em;
+   width: 0.5em;
+   cursor: pointer;
+   border: solid 0.5px black;
+   display: flex;
+   flex-direction: row;
+   place-items: center;
+ }

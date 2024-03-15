@@ -10,7 +10,7 @@ const demoNotes = [
         type: 'NoteTxt',
         isPinned: true,
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: '#F9FFA4'
         },
         info: {
             txt: 'Fullstack Me Baby!'
@@ -22,14 +22,24 @@ const demoNotes = [
         isPinned: false,
         info: {
             url: 'http://books.google.com/books/content?id=nBuA0hmspdMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
-            // title: 'Bobi and Me'
         },
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: '#F9FFA4'
         }
     },
     {
         id: 'n103',
+        type: 'NoteImg',
+        isPinned: false,
+        info: {
+            url: "https://www.coding-academy.org/images/ca-logo-dark@2x.png",
+        },
+        style: {
+            backgroundColor: '#FFA1A1'
+        }
+    },
+    {
+        id: 'n104',
         type: 'NoteTodos',
         isPinned: false,
         info: {
@@ -41,14 +51,33 @@ const demoNotes = [
         }
     },
     {
-        id: 'n104',
+        id: 'n105',
         type: 'NoteVideo',
         isPinned: false,
         info: {
             src: 'https://www.youtube.com/embed/tgbNymZ7vqY',
         }
-    }
-
+    },
+    {
+        id: 'n106',
+        type: 'NoteVideo',
+        isPinned: false,
+        info: {
+            src: 'https://www.youtube.com/embed/1PnVor36_40?si=f4UexM8Ag42JHrIz',
+        }
+    },
+    {
+        id: 'n107',
+        type: 'NoteTodos',
+        isPinned: false,
+        info: {
+            title: 'Get my stuff together',
+            todos: [
+                { txt: 'Driving license', doneAt: null },
+                { txt: 'Coding power', doneAt: 187111111 }
+            ]
+        }
+    },
 ]
 
 const NOTE_KEY = 'noteDB'
@@ -108,7 +137,7 @@ function _createNote(title, txt, url, src) {
     note.type = 'NoteTxt'
     note.isPinned = false
     note.style = {
-        backgroundColor: utilService.getRandomColor()
+        backgroundColor: utilService.getPrettyRandomColor()
     }
     note.info = {
         title: title,

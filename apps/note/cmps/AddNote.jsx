@@ -61,8 +61,6 @@ export function AddNote({ loadNotes }) {
     )
 }
 
-<i class="far fa-sticky-note " aria-hidden="true"></i>
-
 function DynamicCmp(props) {
     switch (props.cmpType) {
         case 'NoteTxt':
@@ -85,7 +83,7 @@ function NoteImg(props) {
 }
 
 function NoteTodos(props) {
-    return <input className="input-add-note" type="text" onInput={props.handleChange} id="title" placeholder="Enter Todo title..." />
+    return <input className="input-add-note" type="text" onInput={props.handleChange} id="title" placeholder="Enter ',' after every todo..." />
 }
 
 function NoteVideo(props) {

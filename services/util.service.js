@@ -9,6 +9,7 @@ export const utilService = {
     saveToStorage,
     loadFromStorage,
     getRandomColor,
+    getPrettyRandomColor,
 }
 
 function makeId(length = 6) {
@@ -81,3 +82,10 @@ function getRandomColor() {
     }
     return color
   }
+
+  function getPrettyRandomColor(){
+    const colors = ['#B4FF9F', '#F9FFA4', '#FFD59E', '#FFA1A1']
+    const randomIndex = Math.floor(Math.random() * colors.length)
+    return colors[randomIndex]
+  }
+
