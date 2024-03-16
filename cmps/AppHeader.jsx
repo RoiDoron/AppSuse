@@ -11,6 +11,7 @@ export function AppHeader() {
             {/* <NavLink to="/about">About</NavLink> */}
             <NavLink to="/mail"><img className="mail-header" src="./assets/img/gmail.png" alt="" /></NavLink>
             <NavLink to="/note"><img src="https://www.gstatic.com/images/branding/product/2x/keep_2020q4_48dp.png" alt="" /></NavLink>
+            <a href="https://yahavganon.github.io/Miss-Book/"><img src="./assets/img/books.png" alt="" /></a>
         </nav>
     </header>
 }
