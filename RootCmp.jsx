@@ -10,6 +10,7 @@ import { MailDetails } from "./apps/mail/views/MailDetails.jsx"
 import { MailList } from "./apps/mail/cmps/MailList.jsx"
 import { UserMsg } from "./cmps/UserMsg.jsx"
 import { EmailCompose } from "./apps/mail/cmps/EmailCompose.jsx"
+import { Started } from "./cmps/Started.jsx"
 
 
 
@@ -18,8 +19,10 @@ export function App() {
         <section className="app">
             <AppHeader />
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/" element={<Home />} >
+                    <Route path="/started" element={<Started/>}/>
+                    <Route path="/about" element={<About/>}/>
+                </Route>
 
                 <Route path="/mail" element={<MailIndex />} />
 
