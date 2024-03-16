@@ -94,7 +94,6 @@ export const noteService = {
 }
 
 function query(filterBy = getDefaultFilter()) {
-    console.log('hey from query')
     return storageService.query(NOTE_KEY)
         .then(notes => {
             if (filterBy.txt) {

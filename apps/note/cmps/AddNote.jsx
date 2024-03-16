@@ -8,14 +8,13 @@ export function AddNote({ loadNotes }) {
     const cmps = ['NoteTxt', 'NoteImg', 'NoteTodos', 'NoteVideo']
     const [cmpInput, setCmpInput] = useState('NoteTxt')
     const params = useParams()
-    
-useEffect (()=> {
-saveMailnote(params)
-},[params])
 
-    function saveMailnote(params){
-        console.log('params:',params)
-        if(!params.title) return
+    useEffect(() => {
+        saveMailnote(params)
+    }, [params])
+
+    function saveMailnote(params) {
+        if (!params.title) return
         noteService.save(params)
             .then(savedNote => {
                 console.log('savedNote', savedNote)
@@ -27,7 +26,7 @@ saveMailnote(params)
     function handleChange({ target }) {
         const field = target.id
         let value = target.value
-        
+
         switch (target.type) {
             case 'number':
             case 'range':
@@ -38,6 +37,7 @@ saveMailnote(params)
         }
         setNewNote(prevNoteToEdit => ({ ...prevNoteToEdit, [field]: value }))
     }
+    
     useEffect(() => {
         console.log(newNote)
     }, [newNote])

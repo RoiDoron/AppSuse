@@ -114,8 +114,15 @@
     padding: 0.3em
 }
 
-.mail-note-btn{
+.note-mail-btn{
     position: absolute;
-    /* bottom: 0;
-    right: 0.5em; */
+    bottom: 0.5em;
+    right: 4em;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.note-preview:hover .note-mail-btn {
+    opacity: 1;
+    cursor: pointer;
 }
