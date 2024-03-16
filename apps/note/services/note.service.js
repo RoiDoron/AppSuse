@@ -94,11 +94,7 @@ const demoNotes = [
         type: 'NoteTodos',
         isPinned: true,
         info: {
-            title: ' 08:30 הצגת פרויקט ספרינט 3',
-            todos: [
-                { txt: 'Driving license', doneAt: null },
-                { txt: 'Coding power', doneAt: 187111111 }
-            ]
+            txt: ' 08:30 הצגת פרויקט ספרינט 3',
         }
     },
 ]
