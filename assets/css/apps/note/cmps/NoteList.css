@@ -51,3 +51,7 @@
    position: relative;
    width: 27em;
  }
+
+ .search-focus{
+  cursor: pointer;
+ }

@@ -18,6 +18,7 @@ export function NoteList({ notes, onRemoveNote, onUpdateNote, loadNotes }) {
                                     onRemoveNote={onRemoveNote}
                                     onUpdateNote={onUpdateNote}
                                     note={note}
+                                    loadNotes={loadNotes}
                                 ></NotePreview>
                             </li>
                         ))}

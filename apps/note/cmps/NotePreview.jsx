@@ -8,14 +8,22 @@ import { MailNote } from "./MailNote.jsx"
 import { noteService } from "../services/note.service.js"
 import { utilService } from "../../../services/util.service.js"
 
-
 export function NotePreview({ note, onUpdateNote, onRemoveNote, loadNotes }) {
     const [isPinned, setIsPinned] = useState(note.isPinned)
+
+    useEffect(() => {
+        loadNotes()
+    }, [isPinned])
 
     function changePinnedNote() {
         setIsPinned(!isPinned)
         const updatedNote = { ...note, isPinned: isPinned }
-        onUpdateNote(updatedNote)
+        // onUpdateNote(updatedNote)
+        noteService.save(updatedNote)
+            .then(savedNote => {
+                console.log('savedNote', savedNote)
+                loadNotes()
+            })
     }
 
     function handleInputChange(ev) {
@@ -26,11 +34,7 @@ export function NotePreview({ note, onUpdateNote, onRemoveNote, loadNotes }) {
     }
 
     function onDuplicateNote(note) {
-        let newNote = { ...note } 
-        console.log(newNote)
-
-        // Generate a new ID for the duplicated note
-        newNote.id = ''
+        let newNote = note.info
 
         noteService.save(newNote)
             .then(savedNote => {
@@ -48,7 +52,7 @@ export function NotePreview({ note, onUpdateNote, onRemoveNote, loadNotes }) {
         {!!note.info.src && <iframe className="video-preview" src={note.info.src}>
         </iframe>}
         <button onClick={() => onRemoveNote(note.id)} className="remove-btn">🗑️</button>
-        <ColorInput onUpdateNote={onUpdateNote} note={note} />
+        <ColorInput loadNotes={loadNotes} onUpdateNote={onUpdateNote} note={note} />
         <button className="duplicate-btn" onClick={() => onDuplicateNote(note)}><i class="fas fa-paste" aria-hidden="true"></i></button>
         <Link to={`/mail/${note.info.title}/${note.info.txt}/${encodeURIComponent(note.info.src)}/${encodeURIComponent(note.info.url)}`} className="note-mail-btn fa-regular fa-paper-plane"></Link>
 
