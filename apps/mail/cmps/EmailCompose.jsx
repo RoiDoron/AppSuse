@@ -71,7 +71,7 @@ export function EmailCompose({ onSendMail }) {
                 type="text"
                 placeholder="subject:"
 
-                value={`${params.title}`}
+                value={`${params.title? params.title:''}`}
                 name="subject"
                 onChange={handleChange}
             />
@@ -80,7 +80,7 @@ export function EmailCompose({ onSendMail }) {
                 type="text"
                 name="body"
                 onChange={handleChange}
-                value={`${params.text}${params.src}${params.url}`}
+                value={`${params.text? params.title:''}${params.src? params.title:''}${params.url? params.title:''}`}
             />
             <div className="form-submit-btn">
                 <button className="send-btn">send</button>
