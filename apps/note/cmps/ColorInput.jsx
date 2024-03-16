@@ -7,7 +7,7 @@ export function ColorInput({ note, onUpdateNote, loadNotes }) {
         const newColor = ev.target.style.backgroundColor
         const updatedStyle = { ...note.style, backgroundColor: newColor }
         const updatedNote = { ...note, style: updatedStyle }
-        // onUpdateNote(updatedNote)
+        
         noteService.save(updatedNote)
             .then(savedNote => {
                 console.log('savedNote', savedNote)

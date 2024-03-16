@@ -16,9 +16,11 @@ export function NotePreview({ note, onUpdateNote, onRemoveNote, loadNotes }) {
     }, [isPinned])
 
     function changePinnedNote() {
-        setIsPinned(!isPinned)
-        const updatedNote = { ...note, isPinned: isPinned }
-        // onUpdateNote(updatedNote)
+        const newIsPinned = !isPinned
+        setIsPinned(newIsPinned)
+    
+        const updatedNote = { ...note, isPinned: newIsPinned }
+    
         noteService.save(updatedNote)
             .then(savedNote => {
                 console.log('savedNote', savedNote)

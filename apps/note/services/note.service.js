@@ -13,7 +13,7 @@ const demoNotes = [
             backgroundColor: '#F9FFA4'
         },
         info: {
-            txt: 'Fullstack Me Baby!'
+            txt: 'Be happy and grateful!'
         }
     },
     {
@@ -43,7 +43,7 @@ const demoNotes = [
         type: 'NoteTodos',
         isPinned: false,
         info: {
-            title: 'Get my stuff together',
+            title: 'One hour of reading',
             todos: [
                 { txt: 'Driving license', doneAt: null },
                 { txt: 'Coding power', doneAt: 187111111 }
@@ -76,6 +76,25 @@ const demoNotes = [
                 { txt: 'Driving license', doneAt: null },
                 { txt: 'Coding power', doneAt: 187111111 }
             ]
+        }
+    },
+    {
+        id: 'n108',
+        type: 'NoteImg',
+        isPinned: false,
+        info: {
+            url: "https://i.insider.com/649afcb5867d960019d93090?width=700",
+        },
+        style: {
+            backgroundColor: '#FFA1A1'
+        }
+    },
+    {
+        id: 'n109',
+        type: 'NoteTodos',
+        isPinned: true,
+        info: {
+            txt: ' 08:30 הצגת פרויקט ספרינט 3',
         }
     },
 ]
