@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const { Link, useSearchParams, Outlet } = ReactRouterDOM
+const {useParams, Link, useSearchParams, Outlet } = ReactRouterDOM
 
 import { EmailCompose } from "../cmps/EmailCompose.jsx"
 import { MailList } from "../cmps/MailList.jsx"
@@ -18,10 +18,14 @@ export function MailIndex() {
     const [sendingMail, setSendingMail] = useState(false)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
     const [menu, setMenu] = useState('')
+    const params = useParams()
 
     useEffect(() => {
         loadEmails()
         unreadMailCount()
+        if (params.text) {
+            onSendMail()
+        }
     }, [filterBy])
 
     function loadEmails() {

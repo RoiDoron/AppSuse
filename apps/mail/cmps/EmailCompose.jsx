@@ -2,7 +2,7 @@ import { mailService } from "../services/mail.service.js"
 
 
 const { useState, useEffect } = React
-const { Link, useSearchParams } = ReactRouterDOM
+const { Link, useSearchParams, useParams } = ReactRouterDOM
 
 export function EmailCompose({ onSendMail }) {
     const [email, setEmail] = useState({ to: '', subject: '', body: '' })
@@ -13,6 +13,23 @@ export function EmailCompose({ onSendMail }) {
         mailService.sendingEmail(email)
         onSendMail()
     }
+
+    let params = useParams()
+    sendNote(params)
+    function sendNote(params) {
+        console.log(params);
+
+        if (!params) params = ''
+        if (params.text === 'undefined') params.text = ''
+        if (params.url === 'undefined') params.url = ''
+        if (params.src === 'undefined') params.src = ''
+        if (params.title === 'undefined') params.title = ''
+        console.log(params);
+    }
+
+    // useEffect(() => {
+    //     sendNote(params)
+    // }, [])
 
     function handleChange({ target }) {
         const field = target.name
@@ -50,14 +67,15 @@ export function EmailCompose({ onSendMail }) {
             <input
                 type="email"
                 placeholder="to:"
-
                 name="to"
+
                 onChange={handleChange}
             />
             <input
                 type="text"
                 placeholder="subject:"
 
+                value={`${params.title}`}
                 name="subject"
                 onChange={handleChange}
             />
@@ -66,6 +84,7 @@ export function EmailCompose({ onSendMail }) {
                 type="text"
                 name="body"
                 onChange={handleChange}
+                value={`${params.text}${params.src}${params.url}`}
             />
             <div className="form-submit-btn">
                 <button className="send-btn">send</button>
