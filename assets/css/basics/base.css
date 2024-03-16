@@ -2,7 +2,10 @@ body {
     margin: 0;
     background-color: #f7f8fa;
     font-family: "Inter", sans-serif;
-    font-weight:300;
+    font-weight: 300;
+
+    text-decoration: none;
+    box-shadow: none;
 }
 
 h1,
@@ -27,3 +30,6 @@ hr {
     width: 60%;
 }
 
+[contenteditable] {
+    outline: 0px solid transparent;
+}

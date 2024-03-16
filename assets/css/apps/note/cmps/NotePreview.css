@@ -131,3 +131,8 @@
     opacity: 1;
     cursor: pointer;
 }
+
+.todo-li{
+    text-decoration: none;
+    list-style-type: none;
+}
