@@ -4,7 +4,7 @@ export function AppHeader() {
 
     return <header className="app-header">
         <Link to="/">
-            <h3><img src="./assets/favicon_package_v0.16/apple-touch-icon.png" alt="" /> Apsus</h3>
+            <h3><img src="./assets/favicon_package_v0.16/apple-touch-icon.png" alt="" /> Apsuse</h3>
         </Link>
         <nav>
             <NavLink to="/"><img src="./assets/img/home.webp" alt="" /></NavLink>
