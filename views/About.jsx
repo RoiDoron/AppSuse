@@ -1,10 +1,9 @@
 
 export function About() {
 return <section>
-    <h2>The Team</h2>
+    <h2 className="team-head">The Team</h2>
 <div className="started-container">
     <div className="card">
-  {/* todo yahav photo */}
         <img className="member-photo" src="./assets/img/yahav.jpg" alt="" /> 
 
         <h3>Yahav Ganon</h3>

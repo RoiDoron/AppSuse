@@ -44,6 +44,10 @@
     object-fit: cover;
   }
 
+  .team-head{
+    margin-bottom: 1.5em;
+  }
+
   @media (min-width: 780px) {
    
     .started-container .card {
