@@ -38,10 +38,7 @@ export function MailIndex() {
     }
 
     function onSetFilter(fieldsToUpdate) {
-        console.log('fieldsToUpdate', fieldsToUpdate)
-
         setFilterBy(prevFilter => ({ ...prevFilter, ...fieldsToUpdate }))
-        console.log(filterBy);
     }
 
     function onRemoveEmail(mail) {
@@ -55,24 +52,23 @@ export function MailIndex() {
                 })
                 .catch((err) => {
                     console.log('Had issues removing car', err)
-                    showErrorMsg(`Could not remove (${emailId})`)
+                    showErrorMsg(`Could not remove `)
                 })
         } else
             mailService.remove(emailId)
                 .then(() => {
                     setEmails((prevEmail) => prevEmail.filter(email => email.id !== emailId))
-                    showSuccessMsg(`email removed successfully (${emailId})`)
+                    showSuccessMsg(`email removed successfully`)
                 })
                 .catch((err) => {
                     console.log('Had issues removing car', err)
-                    showErrorMsg(`Could not remove (${emailId})`)
+                    showErrorMsg(`Could not remove`)
                 })
     }
 
     function onSendMail() {
         setSendingMail(!sendingMail)
         setMenu('')
-
     }
 
     function onInbox() {
