@@ -1,4 +1,4 @@
-const { useState } = React
+const { useState, useEffect } = React
 const { Link } = ReactRouterDOM
 
 import { TodoNote } from "./TodoNote.jsx"
@@ -18,11 +18,6 @@ export function NotePreview({ note, onUpdateNote, onRemoveNote, loadNotes }) {
         onUpdateNote(updatedNote)
     }
 
-    // function handleTodosInputChange(ev){
-    //     const field = ev.target.id
-    //     const value = ev.target.innerText
-    // }
-
     function handleInputChange(ev) {
         const field = ev.target.id
         const value = ev.target.innerText
@@ -31,7 +26,7 @@ export function NotePreview({ note, onUpdateNote, onRemoveNote, loadNotes }) {
     }
 
     function onDuplicateNote(note) {
-        let newNote = { ...note }; // Using the spread operator to create a shallow copy
+        let newNote = { ...note } 
         console.log(newNote)
 
         // Generate a new ID for the duplicated note
@@ -47,7 +42,7 @@ export function NotePreview({ note, onUpdateNote, onRemoveNote, loadNotes }) {
     return <div style={note.style} className="note-preview">
         <button onClick={changePinnedNote} className="pinned-note"><i class="fas fa-thumbtack" aria-hidden="true"></i></button>
         {(note.info.title && !note.info.txt) && <TodoNote handleInputChange={handleInputChange} title={note.info.title} todos={note.info.todos} />}
-{(note.info.title && note.info.txt) && <MailNote handleInputChange={handleInputChange} title={note.info.title} txt={note.info.txt} />}
+        {(note.info.title && note.info.txt) && <MailNote handleInputChange={handleInputChange} title={note.info.title} txt={note.info.txt} />}
         {note.info.txt && <p suppressContentEditableWarning={true} contentEditable="true" id='txt' onInput={handleInputChange}>{note.info.txt}</p>}
         {note.info.url && <img className="img-preview" src={note.info.url} alt="" />}
         {!!note.info.src && <iframe className="video-preview" src={note.info.src}>
