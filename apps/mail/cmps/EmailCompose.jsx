@@ -24,7 +24,7 @@ export function EmailCompose({ onSendMail }) {
         if (params.url === 'undefined') params.url = ''
         if (params.src === 'undefined') params.src = ''
         if (params.title === 'undefined') params.title = ''
-        console.log(params);
+        console.log(params.url);
     }
 
     function handleChange({ target }) {
@@ -80,7 +80,7 @@ export function EmailCompose({ onSendMail }) {
                 type="text"
                 name="body"
                 onChange={handleChange}
-                value={`${params.text? params.title:''}${params.src? params.title:''}${params.url? params.title:''}`}
+                value={`${params.text? params.text:''}${params.src? params.src:''}${params.url? params.url:''}`}
             />
             <div className="form-submit-btn">
                 <button className="send-btn">send</button>
