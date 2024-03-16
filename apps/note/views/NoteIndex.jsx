@@ -34,7 +34,7 @@ export function NoteIndex() {
         noteService.save(noteToUpdate)
             .then((savedNote) => {
                 console.log('updated')
-                setNotes(prevNotes => prevNotes.map(note => note.id === savedNote.id ? savedNote : note))
+                // setNotes(prevNotes => prevNotes.map(note => note.id === savedNote.id ? savedNote : note))
             })
             .catch(err => {
                 console.error('had issues with updating note', err)
