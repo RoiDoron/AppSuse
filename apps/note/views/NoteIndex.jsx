@@ -1,5 +1,4 @@
 const { useState, useEffect } = React
-
 import { NoteList } from "../cmps/NoteList.jsx"
 import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteFilter } from "../cmps/NoteFilter.jsx"

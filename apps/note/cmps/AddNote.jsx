@@ -1,4 +1,5 @@
 const { useState, useEffect } = React
+const { useParams, useNavigate } = ReactRouter
 
 import { noteService } from "../services/note.service.js"
 
@@ -6,6 +7,21 @@ export function AddNote({ loadNotes }) {
     const [newNote, setNewNote] = useState(noteService.getEmptyNote())
     const cmps = ['NoteTxt', 'NoteImg', 'NoteTodos', 'NoteVideo']
     const [cmpInput, setCmpInput] = useState('NoteTxt')
+    const params = useParams()
+    
+useEffect (()=> {
+saveMailnote(params)
+},[params])
+
+    function saveMailnote(params){
+        noteService.save(params)
+            .then(savedNote => {
+                console.log('savedNote', savedNote)
+                loadNotes()
+                setNewNote(noteService.getEmptyNote())
+            })
+    }
+
     function handleChange({ target }) {
         const field = target.id
         let value = target.value

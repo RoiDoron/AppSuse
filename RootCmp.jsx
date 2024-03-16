@@ -26,6 +26,7 @@ export function App() {
 
 
                 <Route path="/note" element={<NoteIndex />} />
+                <Route path="/note/:title/:txt" element={<NoteIndex />} />
             </Routes>
         </section>
         <UserMsg />
