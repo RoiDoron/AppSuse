@@ -24,6 +24,7 @@ export function EmailCompose({ onSendMail }) {
         sendNote()
 
     }, [params])
+
     function sendNote() {
         if (!params) return params = ''
 
@@ -33,9 +34,9 @@ export function EmailCompose({ onSendMail }) {
         if (params.title === 'undefined') params.title = ''
 
         let value = (params.url + params.text + params.src ? params.url + params.text + params.src : '')
-        
+        let valueTitle = params.title
         setEmail(prevEmail => ({ ...prevEmail, body: value }))
-        setEmail(prevEmail => ({ ...prevEmail, subject:params.title }))
+        setEmail(prevEmail => ({ ...prevEmail, subject:valueTitle }))
 
     }
 
