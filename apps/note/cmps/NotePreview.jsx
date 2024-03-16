@@ -18,6 +18,11 @@ export function NotePreview({ note, onUpdateNote, onRemoveNote, loadNotes }) {
         onUpdateNote(updatedNote)
     }
 
+    // function handleTodosInputChange(ev){
+    //     const field = ev.target.id
+    //     const value = ev.target.innerText
+    // }
+
     function handleInputChange(ev) {
         const field = ev.target.id
         const value = ev.target.innerText
