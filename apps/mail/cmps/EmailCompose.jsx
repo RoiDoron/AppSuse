@@ -9,28 +9,34 @@ export function EmailCompose({ onSendMail }) {
 
     function send(ev) {
         ev.preventDefault()
-        console.log(email);
         mailService.sendingEmail(email)
+            .then((mail) => showSuccessMsg(`email removed successfully (${mail.id})`))
         onSendMail()
     }
 
-    let params = useParams()
-    sendNote(params)
-    function sendNote(params) {
-        console.log(params);
+    const params = useParams()
+    useEffect(() => {
+        sendNote()
 
-        if (!params) params = ''
+    }, [params])
+    function sendNote() {
+        if (!params) return params = ''
+
+        console.log('hi');
         if (params.text === 'undefined') params.text = ''
         if (params.url === 'undefined') params.url = ''
         if (params.src === 'undefined') params.src = ''
         if (params.title === 'undefined') params.title = ''
-        console.log(params);
+        let value = (params.url+params.text+params.src?params.url+params.text+params.src:'')
+        setEmail(prevEmail => ({ ...prevEmail, body:value}))
+        
+
+
     }
 
     function handleChange({ target }) {
         const field = target.name
         let value = target.value
-
         switch (target.type) {
             case 'number':
             case 'range':
@@ -45,19 +51,19 @@ export function EmailCompose({ onSendMail }) {
                 break
         }
         if (target.name === 'amount') {
-            console.log('hi');
             setEmail(prevEmail => ({ ...prevEmail, [field]: value }))
         } else {
+            console.log(field, value);
             setEmail(prevEmail => ({ ...prevEmail, [field]: value }))
         }
-        console.log(email);
+
 
     }
-
+console.log(params.text);
     return <section className="mail-compose">
         <div className="compose-header flex space-between">
             <h4>New Massage</h4>
-            <button onClick={() => onSendMail()}>X</button>
+            <Link to="/mail"> <button onClick={() => onSendMail()}>X</button></Link>
         </div>
         <form onSubmit={send} className="compose-form">
             <input
@@ -71,7 +77,7 @@ export function EmailCompose({ onSendMail }) {
                 type="text"
                 placeholder="subject:"
 
-                value={`${params.title}`}
+                value={params.title}
                 name="subject"
                 onChange={handleChange}
             />
@@ -80,7 +86,7 @@ export function EmailCompose({ onSendMail }) {
                 type="text"
                 name="body"
                 onChange={handleChange}
-                value={`${params.text}${params.src}${params.url}`}
+                value={email.body}
             />
             <div className="form-submit-btn">
                 <button className="send-btn">send</button>
