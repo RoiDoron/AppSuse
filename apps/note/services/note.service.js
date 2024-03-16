@@ -117,6 +117,7 @@ function save(note) {
     if (note.id) {
         return storageService.put(NOTE_KEY, note)
     } else {
+        console.log('noteBeforeSave',note)
         note = _createNote(note.title, note.txt, note.url, note.src)
         return storageService.post(NOTE_KEY, note)
     }
@@ -148,7 +149,7 @@ function _createNote(title, txt, url, src) {
         title: title,
         txt: txt,
         url: url,
-        src: src,
+        src: src
     }
     return note
 }

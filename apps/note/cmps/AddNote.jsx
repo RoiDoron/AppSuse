@@ -14,6 +14,7 @@ export function AddNote({ loadNotes }) {
     }, [params])
 
     function saveMailnote(params) {
+        console.log(params)
         if (!params.title) return
         noteService.save(params)
             .then(savedNote => {
@@ -26,6 +27,8 @@ export function AddNote({ loadNotes }) {
     function handleChange({ target }) {
         const field = target.id
         let value = target.value
+        console.log(field)
+        console.log(value)
 
         switch (target.type) {
             case 'number':
@@ -36,15 +39,19 @@ export function AddNote({ loadNotes }) {
                 break
         }
         setNewNote(prevNoteToEdit => ({ ...prevNoteToEdit, [field]: value }))
+        console.log('---',newNote)
     }
-    
+
     useEffect(() => {
-        console.log(newNote)
+        console.log('===',newNote)
+        setNewNote(newNote)
     }, [newNote])
 
     function onSaveNote(ev) {
+        console.log(ev.target)
         ev.preventDefault()
         console.log('newNote', newNote)
+        if(!newNote.title && !newNote.txt && !newNote.url && !newNote.src) return
         noteService.save(newNote)
             .then(savedNote => {
                 console.log('savedNote', savedNote)
@@ -53,27 +60,22 @@ export function AddNote({ loadNotes }) {
             })
     }
 
-    useEffect(() => {
-
-    }, [cmpInput])
-
-
     function onChangeCmp(type) {
         setCmpInput(type)
-        setNewNote(noteService.getEmptyNote())
+        // setNewNote(noteService.getEmptyNote())
     }
 
     return (
         <section className="add-note">
             <form className="note-form" onSubmit={onSaveNote}>
                 <DynamicCmp cmpType={cmpInput} handleChange={handleChange} />
-            </form>
             <div className="search-bar">
                 <button className="input-type" onClick={() => onChangeCmp('NoteTxt')}><i className="far fa-sticky-note " aria-hidden="true"></i></button>
                 <button className="input-type" onClick={() => onChangeCmp('NoteImg')}><i className="far fa-images " aria-hidden="true"></i></button>
                 <button className="input-type" onClick={() => onChangeCmp('NoteTodos')}><i className="far fa-list-alt " aria-hidden="true"></i></button>
                 <button className="input-type" onClick={() => onChangeCmp('NoteVideo')}><i className="fab fa-youtube active " aria-hidden="true"></i></button>
             </div>
+            </form>
 
         </section>
     )
@@ -93,17 +95,17 @@ function DynamicCmp(props) {
 }
 
 function NoteTxt(props) {
-    return <input className="input-add-note" type="text" onInput={props.handleChange} id="txt" placeholder="Enter new note here..." />
+    return <input className="input-add-note" type="text" onChange={props.handleChange} id="txt" placeholder="Enter new note here..." />
 }
 
 function NoteImg(props) {
-    return <input className="input-add-note" type="text" onInput={props.handleChange} id="url" placeholder="Enter image url..." />
+    return <input className="input-add-note" type="text" onChange={props.handleChange} id="url" placeholder="Enter image url..." />
 }
 
 function NoteTodos(props) {
-    return <input className="input-add-note" type="text" onInput={props.handleChange} id="title" placeholder="Enter ',' after every todo..." />
+    return <input className="input-add-note" type="text" onChange={props.handleChange} id="title" placeholder="Enter ',' after every todo..." />
 }
 
 function NoteVideo(props) {
-    return <input className="input-add-note" type="text" onInput={props.handleChange} id="src" placeholder="Enter video src..." />
+    return <input className="input-add-note" type="text" onChange={props.handleChange} id="src" placeholder="Enter video src..." />
 }

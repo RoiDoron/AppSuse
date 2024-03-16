@@ -13,7 +13,7 @@ export function NoteFilter({ setMainFilter }) {
     }
 
     return <form>
-        <span className="fa-solid fa-magnifying-glass"></span>
-        <input className="search-note" type="text" onChange={handleTxtChange} value={filterBy.txt} placeholder="Search note" />
+        <label className="search-focus" htmlFor="input"><span className="fa-solid fa-magnifying-glass"></span></label>
+        <input className="search-note" id="input" type="text" onChange={handleTxtChange} value={filterBy.txt} placeholder="Search note" />
     </form>
 }

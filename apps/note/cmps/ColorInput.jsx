@@ -1,11 +1,18 @@
-export function ColorInput({ note, onUpdateNote }) {
+import { noteService } from "../services/note.service.js"
+
+export function ColorInput({ note, onUpdateNote, loadNotes }) {
     const colors = ['#B4FF9F', '#F9FFA4', '#FFD59E', '#FFA1A1','#FFE0E0','lightcyan']
 
     function onSetColor(ev) {
         const newColor = ev.target.style.backgroundColor
         const updatedStyle = { ...note.style, backgroundColor: newColor }
         const updatedNote = { ...note, style: updatedStyle }
-        onUpdateNote(updatedNote)
+        // onUpdateNote(updatedNote)
+        noteService.save(updatedNote)
+            .then(savedNote => {
+                console.log('savedNote', savedNote)
+                loadNotes()
+            })
     }
 
     return <section className="color-input">

@@ -41,7 +41,17 @@
  }
 
  .search-bar {
+   display: flex;
    position: absolute;
-   top: 10.5em;
-   left:32.5em;
+   bottom: 1.6em;
+   left: 16.2em;
+ }
+
+ .note-form {
+   position: relative;
+   width: 27em;
+ }
+
+ .search-focus{
+  cursor: pointer;
  }
