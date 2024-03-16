@@ -14,6 +14,8 @@ saveMailnote(params)
 },[params])
 
     function saveMailnote(params){
+        console.log('params:',params)
+        if(!params.title) return
         noteService.save(params)
             .then(savedNote => {
                 console.log('savedNote', savedNote)

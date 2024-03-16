@@ -118,9 +118,7 @@ function save(note) {
     if (note.id) {
         return storageService.put(NOTE_KEY, note)
     } else {
-        console.log('holda amiga')
         note = _createNote(note.title, note.txt, note.url, note.src)
-        console.log(note)
         return storageService.post(NOTE_KEY, note)
     }
 }

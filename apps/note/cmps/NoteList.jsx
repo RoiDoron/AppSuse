@@ -2,8 +2,8 @@ import { NotePreview } from "./NotePreview.jsx"
 
 export function NoteList({ notes, onRemoveNote, onUpdateNote, loadNotes }) {
     const pinnedNotes = notes.filter(note => note.isPinned === true)
-    // Filter non-pinned notes
     const nonPinnedNotes = notes.filter(note => note.isPinned !== true)
+    
     if (!notes.length) return <div>No notes to show...</div>
     return (
         <div>
