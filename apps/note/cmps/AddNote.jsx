@@ -37,7 +37,7 @@ export function AddNote({ loadNotes }) {
         }
         setNewNote(prevNoteToEdit => ({ ...prevNoteToEdit, [field]: value }))
     }
-    
+
     useEffect(() => {
         console.log(newNote)
     }, [newNote])
@@ -67,13 +67,13 @@ export function AddNote({ loadNotes }) {
         <section className="add-note">
             <form className="note-form" onSubmit={onSaveNote}>
                 <DynamicCmp cmpType={cmpInput} handleChange={handleChange} />
-            </form>
             <div className="search-bar">
                 <button className="input-type" onClick={() => onChangeCmp('NoteTxt')}><i className="far fa-sticky-note " aria-hidden="true"></i></button>
                 <button className="input-type" onClick={() => onChangeCmp('NoteImg')}><i className="far fa-images " aria-hidden="true"></i></button>
                 <button className="input-type" onClick={() => onChangeCmp('NoteTodos')}><i className="far fa-list-alt " aria-hidden="true"></i></button>
                 <button className="input-type" onClick={() => onChangeCmp('NoteVideo')}><i className="fab fa-youtube active " aria-hidden="true"></i></button>
             </div>
+            </form>
 
         </section>
     )
