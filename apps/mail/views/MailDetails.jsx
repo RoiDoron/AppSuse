@@ -1,7 +1,6 @@
 
 const { Link } = ReactRouterDOM
 
-
 export function MailDetails({ mailToShow, setShowMail, onRemoveEmail }) {
     const mail = mailToShow
     function onRemove(mail){

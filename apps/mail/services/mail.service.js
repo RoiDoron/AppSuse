@@ -11,7 +11,6 @@ const KEY_EMAIL = 'emailDB'
 
 _createEmails()
 
-
 export const mailService = {
     query,
     getById,
@@ -22,10 +21,8 @@ export const mailService = {
     unreadMail
 }
 
-
 function query(filterBy) {
-    console.log(filterBy);
-
+  
     return storageService.query(KEY_EMAIL)
         .then((emails) => {
             if (filterBy.stat) {
@@ -49,7 +46,6 @@ function query(filterBy) {
             }
             if (filterBy.isRead ==='unread') {
                 emails = emails.filter(mail => mail.isRead)
-                console.log('filter 2');
             }
             return emails
         })
