@@ -9,6 +9,7 @@
 
 }
 
+.mail-note-btn,
 .mail-delete-btn,
 .mail-details-btn {
     position: absolute;
@@ -37,4 +38,9 @@
 
 .mail-delete-btn {
     left: 3em;
+}
+
+.mail-note-btn {
+    left: 6em;
+    top: 0.8em;
 }
