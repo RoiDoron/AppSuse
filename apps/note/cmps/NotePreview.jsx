@@ -50,7 +50,7 @@ export function NotePreview({ note, onUpdateNote, onRemoveNote, loadNotes }) {
         <button onClick={() => onRemoveNote(note.id)} className="remove-btn">🗑️</button>
         <ColorInput onUpdateNote={onUpdateNote} note={note} />
         <button className="duplicate-btn" onClick={() => onDuplicateNote(note)}><i class="fas fa-paste" aria-hidden="true"></i></button>
-        <Link to={`/mail/${note.info.title}/${note.info.txt}/${note.info.src}/${note.info.url}`} className="mail-note-btn fa-regular fa-paper-plane"></Link>
+        <Link to={`/mail/${note.info.title}/${note.info.txt}/'${note.info.src}'/'${note.info.url}'`} className="note-mail-btn fa-regular fa-paper-plane"></Link>
 
     </div>
 }
