@@ -92,7 +92,7 @@ const demoNotes = [
     {
         id: 'n109',
         type: 'NoteTodos',
-        isPinned: false,
+        isPinned: true,
         info: {
             title: ' 08:30 הצגת פרויקט ספרינט 3',
             todos: [
