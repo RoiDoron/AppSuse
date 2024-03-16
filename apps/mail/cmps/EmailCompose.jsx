@@ -27,10 +27,6 @@ export function EmailCompose({ onSendMail }) {
         console.log(params);
     }
 
-    // useEffect(() => {
-    //     sendNote(params)
-    // }, [])
-
     function handleChange({ target }) {
         const field = target.name
         let value = target.value

@@ -1,14 +1,13 @@
 const { useState, useEffect } = React
 const { useOutletContext } = ReactRouterDOM
-import { MailRow } from "./MailRow.jsx";
 
+import { MailRow } from "./MailRow.jsx";
 
 export function MailList({toggleMenu,emails, onRemoveEmail, onSetFilter, filterBy, setShowMail, setMailToShow,unreadMailCount }) {
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
     useEffect(() => {
     }, [filterByToEdit])
-
 
     function handleChange(ev) {
         let { value, name: field, type } = ev.target
@@ -24,7 +23,6 @@ export function MailList({toggleMenu,emails, onRemoveEmail, onSetFilter, filterB
     }
     const { desc,isRead } = filterByToEdit
 
-   
     return <section className="emails-section">
         <i onClick={()=>toggleMenu()} className={`mail-hamburger fas fa-bars`}></i>
         <form onSubmit={onSubmit} className="filter-input">

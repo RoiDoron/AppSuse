@@ -5,9 +5,10 @@ import { EmailCompose } from "../cmps/EmailCompose.jsx"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailSideNav } from "../cmps/MailSideNav.jsx"
 
-import { eventBusService, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { mailService } from "../services/mail.service.js"
 import { MailDetails } from "./MailDetails.jsx"
+
+import { eventBusService, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 
 export function MailIndex() {
@@ -29,8 +30,6 @@ export function MailIndex() {
     }, [filterBy])
 
     function loadEmails() {
-
-        console.log(filterBy);
         mailService.query(filterBy)
             .then((emails) => {
                 setEmails(emails)
@@ -94,8 +93,6 @@ export function MailIndex() {
 
     function unreadMailCount() {
         let counter = 0
-        console.group('hi')
-
         mailService.unreadMail({ stat: 'inbox' })
             .then(mails => {
 
@@ -110,10 +107,7 @@ export function MailIndex() {
     }
 
     function toggleMenu() {
-        console.log('hi');
         setMenu(!menu ? 'menu-open' : '')
-        console.log(menu);
-
     }
 
     if (!emails) return <div>loading...</div>
