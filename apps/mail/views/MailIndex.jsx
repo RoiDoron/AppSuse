@@ -84,6 +84,10 @@ export function MailIndex() {
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, stat: 'trash' }))
     }
 
+    function onDraft() {
+        setFilterBy(prevFilterBy => ({ ...prevFilterBy, stat: 'draft' }))
+    }
+
     function unreadMailCount() {
         let counter = 0
         console.group('hi')
@@ -122,6 +126,7 @@ export function MailIndex() {
             onInbox={onInbox}
             onSends={onSends}
             onTrash={onTrash}
+            onDraft={onDraft}
         />
         {!showMail &&
             <MailList

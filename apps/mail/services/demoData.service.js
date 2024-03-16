@@ -61,8 +61,8 @@ export const gEmails = [
         isRead: true,
         sentAt: 1551183930594,
         removedAt: null,
-        from: "friend@example.com",
-        to: "user@appsus.com",
+        from: "user@appsus.com",
+        to: "friend@example.com",
         stat: "sent"
     },
     {
@@ -72,8 +72,8 @@ export const gEmails = [
         isRead: false,
         sentAt: 1551193930594,
         removedAt: null,
-        from: "careers@company.com",
-        to: "user@appsus.com",
+        from: "user@appsus.com",
+        to: "careers@company.com",
         stat: "sent"
     },
     {
@@ -193,8 +193,30 @@ export const gEmails = [
         isRead: false,
         sentAt: 1551303930594,
         removedAt: null,
-        from: "manager@company.com",
-        to: "user@appsus.com",
+        from: "user@appsus.com",
+        to: "manager@company.com",
         stat: "sent"
+    },
+    {
+        id: "e119",
+        subject: "Project Proposal Draft",
+        body: "Attached is the draft for the project proposal. Please review and provide feedback.",
+        isRead: false,
+        sentAt: 1551313930594,
+        removedAt: null,
+        from: "user@appsus.com",
+        to: "client@company.com",
+        stat: "draft"
+    },
+    {
+        id: "e120",
+        subject: "Marketing Campaign Ideas",
+        body: "Here are some ideas for the upcoming marketing campaign. Let me know your thoughts.",
+        isRead: false,
+        sentAt: 1551323930594,
+        removedAt: null,
+        from: "user@appsus.com",
+        to: "marketing@company.com",
+        stat: "draft"
     }
 ]
