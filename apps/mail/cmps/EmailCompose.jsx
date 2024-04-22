@@ -1,8 +1,9 @@
-import { mailService } from "../services/mail.service.js"
-
 
 const { useState, useEffect } = React
-const { Link, useSearchParams, useParams } = ReactRouterDOM
+const { Link, useSearchParams, useParams,history } = ReactRouterDOM
+
+import { mailService } from "../services/mail.service.js"
+import { eventBusService, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 export function EmailCompose({ onSendMail }) {
     const [email, setEmail] = useState({ to: '', subject: '', body: '' })
@@ -10,8 +11,12 @@ export function EmailCompose({ onSendMail }) {
     function send(ev) {
         ev.preventDefault()
         mailService.sendingEmail(email)
-            .then((mail) => showSuccessMsg(`email removed successfully (${mail.id})`))
         onSendMail()
+        showSuccessMsg(`email send successfully`)
+        history.push({
+            pathname: '/mail',
+            // search: '?color=blue'
+          })
     }
 
     const params = useParams()
@@ -19,18 +24,19 @@ export function EmailCompose({ onSendMail }) {
         sendNote()
 
     }, [params])
+
     function sendNote() {
         if (!params) return params = ''
 
-        console.log('hi');
         if (params.text === 'undefined') params.text = ''
         if (params.url === 'undefined') params.url = ''
         if (params.src === 'undefined') params.src = ''
         if (params.title === 'undefined') params.title = ''
-        let value = (params.url+params.text+params.src?params.url+params.text+params.src:'')
-        setEmail(prevEmail => ({ ...prevEmail, body:value}))
-        
 
+        let value = (params.url + params.text + params.src ? params.url + params.text + params.src : '')
+        let valueTitle = params.title
+        setEmail(prevEmail => ({ ...prevEmail, body: value }))
+        setEmail(prevEmail => ({ ...prevEmail, subject:valueTitle }))
 
     }
 
@@ -53,13 +59,10 @@ export function EmailCompose({ onSendMail }) {
         if (target.name === 'amount') {
             setEmail(prevEmail => ({ ...prevEmail, [field]: value }))
         } else {
-            console.log(field, value);
             setEmail(prevEmail => ({ ...prevEmail, [field]: value }))
         }
-
-
     }
-console.log(params.text);
+
     return <section className="mail-compose">
         <div className="compose-header flex space-between">
             <h4>New Massage</h4>
@@ -77,7 +80,7 @@ console.log(params.text);
                 type="text"
                 placeholder="subject:"
 
-                value={params.title}
+                value={email.subject}
                 name="subject"
                 onChange={handleChange}
             />
@@ -89,7 +92,7 @@ console.log(params.text);
                 value={email.body}
             />
             <div className="form-submit-btn">
-                <button className="send-btn">send</button>
+                <button className="send-btn">send <Link to="/mail"></Link></button>
             </div>
         </form>
 
